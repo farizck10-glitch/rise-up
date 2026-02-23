@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise Up Panayi - Ward 18 Community App</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!-- Google Fonts: Inter for English, Noto Sans Malayalam for Malayalam -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- SCREEN 1: Welcome -->
+        <section id="screen-welcome" class="screen active"
+            style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #FFFFFF; padding: 0; margin: 0; overflow: hidden;">
+
+            <!-- Image Container pushed to bottom (flex-end) -->
+            <div
+                style="position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: flex-end;">
+
+                <img src="./assets/welcome_poster.jpg?v=11" alt="Welcome Poster"
+                    style="width: 100%; height: 100%; object-fit: contain; object-position: bottom; z-index: 10;">
+
+                <div style="position: absolute; top: 65%; z-index: 20; width: 100%; text-align: center;">
+                    <button class="btn-primary" onclick="navigate('screen-intro-1')"
+                        style="box-shadow: 0 4px 12px rgba(10,88,202,0.4); font-size: 1.1rem; padding: 14px 28px; border-radius: 30px; letter-spacing: 0.5px; position: relative; z-index: 21;">തുടങ്ങാം
+                        (Get Started)</button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SCREEN 2: Intro 1 -->
+        <section id="screen-intro-1" class="screen flex-center bg-blue-light">
+            <div class="intro-container slide-in">
+                <div class="intro-illustration">
+                    <i data-lucide="bell-ring" class="mega-icon text-blue"></i>
+                </div>
+                <h2>Real-time News & Alerts</h2>
+                <p>വാർഡിലെ തത്സമയ വാർത്തകളും അറിയിപ്പുകളും വേഗത്തിൽ അറിയുക.</p>
+                <div class="intro-controls">
+                    <div class="dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="btn-next" onclick="navigate('screen-intro-2')">Next <i
+                            data-lucide="arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Intro 2 -->
+        <section id="screen-intro-2" class="screen flex-center bg-blue-light">
+            <div class="intro-container slide-in">
+                <div class="intro-illustration">
+                    <i data-lucide="shopping-bag" class="mega-icon text-blue"></i>
+                </div>
+                <h2>Community Market & Services</h2>
+                <p>നാട്ടിലെ ഉൽപ്പന്നങ്ങൾ വാങ്ങാനും വിൽക്കാനും സേവനങ്ങൾ ലഭ്യമാക്കാനും.</p>
+                <div class="intro-controls">
+                    <div class="dots">
+                        <span class="dot"></span>
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="btn-next" onclick="navigate('screen-intro-3')">Next <i
+                            data-lucide="arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: Intro 3 -->
+        <section id="screen-intro-3" class="screen flex-center bg-blue-light">
+            <div class="intro-container slide-in">
+                <div class="intro-illustration">
+                    <i data-lucide="heart-pulse" class="mega-icon text-red"></i>
+                </div>
+                <h2>Emergency & Blood Bank</h2>
+                <p>അടിയന്തര ഘട്ടങ്ങളിൽ സഹായത്തിനും രക്തദാനത്തിനും ഒരൊറ്റ പ്ലാറ്റ്ഫോം.</p>
+                <div class="intro-controls">
+                    <div class="dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot active"></span>
+                    </div>
+                    <button class="btn-next" onclick="navigate('screen-login')">Get Started <i
+                            data-lucide="arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 5: Login / Signup -->
+        <section id="screen-login" class="screen flex-center">
+            <div class="login-container fade-in">
+                <h2 class="text-blue">Join Your Community</h2>
+                <p class="subtitle">Enter details to stay connected</p>
+
+                <form id="login-form">
+                    <div class="input-group">
+                        <label>Name (പേര്)</label>
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Phone Number (ഫോൺ നമ്പർ)</label>
+                        <input type="tel" placeholder="10-digit number" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Area / Locality (സ്ഥലം)</label>
+                        <select required>
+                            <option value="">Select Area</option>
+                            <option value="area1">Panayi Center</option>
+                            <option value="area2">Temple Road</option>
+                            <option value="area3">School Junction</option>
+                            <option value="area4">River Side</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn-primary w-full mt-4" onclick="login()">Login</button>
+                </form>
+                <div class="divider"><span>OR</span></div>
+                <button class="btn-outline w-full" onclick="navigate('screen-home')">Skip for now</button>
+                <button class="btn-ghost w-full mt-2" onclick="navigate('screen-admin')">Admin Login Mockup</button>
+            </div>
+        </section>
+
+        <!-- Navigation Drawer (Hidden by default) -->
+        <div id="nav-drawer" class="drawer-overlay hidden" onclick="toggleDrawer()">
+            <div class="drawer slide-right" onclick="event.stopPropagation()">
+                <div class="drawer-header"
+                    style="display:flex; flex-direction:column; gap:8px; background-color: #ffffff; border-bottom: 1px solid #e2e8f0; padding-bottom: 16px;">
+                    <img src="./assets/logo.jpg" alt="Rise Up Panayi Logo"
+                        style="height: 60px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 8px;">
+                    <div>
+                        <h3 id="drawer-user-name" style="color: #003366;">Guest User</h3>
+                        <p id="drawer-user-phone" style="color: #333333;">Ward 18</p>
+                    </div>
+                </div>
+                <ul class="drawer-menu">
+                    <li onclick="navigate('screen-home'); toggleDrawer()"><i data-lucide="home"></i> Home</li>
+                    <li onclick="navigate('screen-bloodbank'); toggleDrawer()"><i data-lucide="droplet"></i> Blood Bank
+                    </li>
+                    <li onclick="navigate('screen-schemes'); toggleDrawer()"><i data-lucide="file-text"></i> Panchayat
+                        Schemes</li>
+                    <li onclick="navigate('screen-library'); toggleDrawer()"><i data-lucide="download"></i> Digital
+                        Library</li>
+                    <li onclick="navigate('screen-market'); toggleDrawer()"><i data-lucide="shopping-cart"></i>
+                        Marketplace</li>
+                    <li onclick="navigate('screen-jobs'); toggleDrawer()"><i data-lucide="briefcase"></i> Jobs</li>
+                    <li onclick="navigate('screen-haritha'); toggleDrawer()"><i data-lucide="leaf"></i> ഹരിതകർമ്മ സേന
+                    </li>
+                    <li onclick="navigate('screen-grievances'); toggleDrawer()"><i data-lucide="alert-triangle"></i>
+                        Grievances</li>
+                    <li onclick="navigate('screen-emergency'); toggleDrawer()"><i data-lucide="phone"></i> Emergency
+                    </li>
+                    <li class="logout" onclick="logout()"><i data-lucide="log-out"></i> Logout</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SCREEN: Home -->
+        <section id="screen-home" class="screen bg-gray">
+            <header class="app-header">
+                <button class="icon-btn" onclick="toggleDrawer()"><i data-lucide="menu"></i></button>
+                <img src="./assets/logo.jpg" alt="Rise Up Panayi Logo" class="header-logo">
+                <button class="icon-btn"><i data-lucide="bell"></i></button>
+            </header>
+
+            <!-- News Ticker -->
+            <div class="news-ticker">
+                <div class="ticker-content slow">
+                    <span>📢 അടിയന്തര അറിയിപ്പ്: നാളെ രാവിലെ 9 മണി മുതൽ 5 മണി വരെ വൈദ്യുതി മുടങ്ങുന്നതാണ്. </span>
+                    <span>📢 വാർഡ് സഭ ഞായറാഴ്ച വൈകുന്നേരം 4 മണിക്ക് അംഗൻവാടിയിൽ നടക്കും. </span>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <main class="home-main">
+                <!-- Image Slider -->
+                <div class="slider-container card" id="home-slider">
+                    <div class="slider-track" id="slider-track">
+                        <!-- Slide 1 -->
+                        <div class="slide active">
+                            <img src="https://picsum.photos/800/400?random=1"
+                                onerror="this.onerror=null;this.src='./assets/logo.jpg';" alt="Kerala Landscape">
+                            <div class="slider-caption">വാർഡ് 18 വികസന പദ്ധതികൾ</div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="slide">
+                            <img src="https://picsum.photos/800/400?random=2"
+                                onerror="this.onerror=null;this.src='./assets/logo.jpg';" alt="Road Works">
+                            <div class="slider-caption">പുതിയ റോഡ് നിർമ്മാണം</div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="slide">
+                            <img src="https://picsum.photos/800/400?random=3"
+                                onerror="this.onerror=null;this.src='./assets/logo.jpg';" alt="Community Park">
+                            <div class="slider-caption">നവീകരിച്ച പാർക്ക്</div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="slider-nav prev" onclick="moveSlider(-1)"><i data-lucide="chevron-left"
+                            style="width:20px;height:20px;"></i></button>
+                    <button class="slider-nav next" onclick="moveSlider(1)"><i data-lucide="chevron-right"
+                            style="width:20px;height:20px;"></i></button>
+
+                    <!-- Navigation Dots -->
+                    <div class="slider-dots" id="slider-dots">
+                        <div class="slider-dot active" onclick="goToSlide(0)"></div>
+                        <div class="slider-dot" onclick="goToSlide(1)"></div>
+                        <div class="slider-dot" onclick="goToSlide(2)"></div>
+                    </div>
+                </div>
+
+                <!-- Blood Bank Featured Card -->
+                <div class="featured-card blood-bank-card card" onclick="navigate('screen-bloodbank')">
+                    <div class="card-content">
+                        <h3><i data-lucide="droplet" class="icon-red"></i> Blood Bank</h3>
+                        <p>അടിയന്തര രക്തദാന സഹായം</p>
+                    </div>
+                    <button class="btn-sos">SOS</button>
+                </div>
+
+                <!-- Service Grid -->
+                <h3 class="section-title">Services (സേവനങ്ങൾ)</h3>
+                <div class="service-grid">
+                    <!-- Category: Public Desk -->
+                    <div class="service-item card" onclick="navigate('screen-schemes')">
+                        <div class="icon-wrapper blue"><i data-lucide="landmark"></i></div>
+                        <span>പദ്ധതികൾ</span>
+                    </div>
+                    <div class="service-item card" onclick="navigate('screen-library')">
+                        <div class="icon-wrapper green"><i data-lucide="file-down"></i></div>
+                        <span>ഫോമുകൾ</span>
+                    </div>
+                    <!-- Category: Community Market -->
+                    <div class="service-item card" onclick="navigate('screen-market')">
+                        <div class="icon-wrapper orange"><i data-lucide="shopping-bag"></i></div>
+                        <span>വിപണി</span>
+                    </div>
+                    <div class="service-item card" onclick="navigate('screen-jobs')">
+                        <div class="icon-wrapper purple"><i data-lucide="briefcase"></i></div>
+                        <span>തൊഴിൽ</span>
+                    </div>
+                    <div class="service-item card" onclick="navigate('screen-haritha')">
+                        <div class="icon-wrapper green" style="background:#E6F4EA; color:#137333;"><i
+                                data-lucide="leaf"></i></div><span>ഹരിതകർമ്മ സേന</span>
+                    </div>
+                    <div class="service-item card" onclick="navigate('screen-grievances')">
+                        <div class="icon-wrapper red"><i data-lucide="alert-triangle"></i></div><span>പരാതികൾ</span>
+                    </div>
+                    <div class="service-item card" onclick="navigate('screen-emergency')">
+                        <div class="icon-wrapper blue"><i data-lucide="phone"></i></div><span>എമർജൻസി</span>
+                    </div>
+                    <!-- Remaining grid items pointing to alerts for now -->
+                    <div class="service-item card" onclick="alert('ഗതാഗതം പേജ് നിർമ്മാണത്തിലാണ്')">
+                        <div class="icon-wrapper green"><i data-lucide="bus"></i></div><span>ഗതാഗതം</span>
+                    </div>
+                    <div class="service-item card" onclick="alert('വിദ്യാഭ്യാസം പേജ് നിർമ്മാണത്തിലാണ്')">
+                        <div class="icon-wrapper orange"><i data-lucide="book-open"></i></div><span>വിദ്യാഭ്യാസം</span>
+                    </div>
+                    <div class="service-item card" onclick="alert('ആരോഗ്യം പേജ് നിർമ്മാണത്തിലാണ്')">
+                        <div class="icon-wrapper purple"><i data-lucide="heart"></i></div><span>ആരോഗ്യം</span>
+                    </div>
+                    <div class="service-item card" onclick="alert('അയൽക്കൂട്ടം പേജ് നിർമ്മാണത്തിലാണ്')">
+                        <div class="icon-wrapper yellow"><i data-lucide="users"></i></div><span>അയൽക്കൂട്ടം</span>
+                    </div>
+                    <div class="service-item card" onclick="alert('സേവനങ്ങൾ പേജ് നിർമ്മാണത്തിലാണ്')">
+                        <div class="icon-wrapper blue"><i data-lucide="wrench"></i></div><span>മറ്റു സേവനങ്ങൾ</span>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- SCREEN: Blood Bank -->
+        <section id="screen-bloodbank" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-home')"><i data-lucide="arrow-left"></i></button>
+                <div class="header-title">Blood Bank</div>
+                <div></div>
+            </header>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <div class="tab active bb-tab" onclick="switchBloodBankTab('find')">Find Donor<br><small>രക്തം
+                        തിരയാൻ</small></div>
+                <div class="tab bb-tab" onclick="switchBloodBankTab('dashboard')">My Dashboard<br><small>ദാതാവിൻ്റെ
+                        പ്രൊഫൈൽ</small></div>
+            </div>
+
+            <main class="padding-main" style="height: calc(100vh - 120px);">
+                <!-- Find a Donor View -->
+                <div id="bb-view-find" class="bb-view active">
+                    <div class="action-buttons pair-buttons">
+                        <button class="btn-primary-red w-full" onclick="switchBloodBankTab('dashboard')"><i
+                                data-lucide="user"></i> Manage Profile</button>
+                        <button class="btn-sos-large w-full" onclick="navigate('screen-blood-request')"><i
+                                data-lucide="alert-circle"></i>
+                            SOS Request</button>
+                    </div>
+
+                    <div class="search-bar mt-4" style="padding:0; overflow:hidden;">
+                        <div style="padding-left:16px; display:flex; align-items:center;"><i data-lucide="filter"></i>
+                        </div>
+                        <select id="blood-group-filter" onchange="renderDonors()"
+                            style="border:none; outline:none; width:100%; padding: 16px; background:var(--white); cursor:pointer;">
+                            <option value="All">All Blood Groups (എല്ലാ ഗ്രൂപ്പുകളും)</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+
+                    <div id="donor-list-container" class="donor-list mt-2">
+                        <!-- Dynamic list renders here -->
+                    </div>
+                </div>
+
+                <!-- Donor Dashboard View -->
+                <div id="bb-view-dashboard" class="bb-view" style="display: none;">
+                    <div class="card bb-profile-card">
+                        <div class="flex-center mb-4">
+                            <div class="blood-group-large">O+</div>
+                        </div>
+                        <h3 class="text-center" style="font-size: 1.5rem; margin-bottom:4px;">Rahul K</h3>
+                        <p class="text-center text-muted mb-4">Panayi Center • Ph: +91 9876543210</p>
+
+                        <div class="status-box mb-4" id="donor-status-box">
+                            <!-- Dynamic status -->
+                        </div>
+
+                        <button id="btn-donate-today" class="btn-primary-red w-full flex-center mb-2" style="gap:8px"
+                            onclick="markDonatedToday()">
+                            <i data-lucide="check-circle"></i> Mark Donated Today (ഇന്ന് രക്തം നൽകി)
+                        </button>
+                        <button class="btn-outline w-full mt-2">Edit Profile Details</button>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- SCREEN: Schemes -->
+        <section id="screen-schemes" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-home')"><i data-lucide="arrow-left"></i></button>
+                <div class="header-title">പദ്ധതി ജാലകം</div>
+                <div></div>
+            </header>
+            <main class="padding-main">
+                <h3 class="mb-2">Available Panchayat Schemes</h3>
+                <div class="scheme-list">
+                    <div class="scheme-card card">
+                        <h4>ലൈഫ് മിഷൻ ഭവന പദ്ധതി</h4>
+                        <p>ഭവനരഹിതർക്കുള്ള ധനസഹായം. അവസാന തീയതി: 30 Nov 2024</p>
+                        <button class="btn-outline-sm mt-2"
+                            onclick="if(requireLogin('express interest in schemes')) alert('താൽപ്പര്യമുണ്ട് രേഖപ്പെടുത്തി!')">താൽപ്പര്യമുണ്ട്
+                            (Interested)</button>
+                    </div>
+                    <div class="scheme-card card">
+                        <h4>കൃഷിഭവൻ സബ്സിഡി</h4>
+                        <p>പച്ചക്കറി കൃഷിക്കുള്ള വിത്തുകളും വളവും.</p>
+                        <button class="btn-outline-sm mt-2"
+                            onclick="alert('താൽപ്പര്യമുണ്ട് രേഖപ്പെടുത്തി!')">താൽപ്പര്യമുണ്ട് (Interested)</button>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- SCREEN: Digital Library (PFDs) -->
+        <section id="screen-library" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-home')"><i data-lucide="arrow-left"></i></button>
+                <div class="header-title">Digital Library</div>
+                <div></div>
+            </header>
+            <main class="padding-main">
+                <h3 class="mb-2">Download Forms</h3>
+                <div class="pdf-list">
+                    <div class="pdf-item card flex-between">
+                        <div class="pdf-info">
+                            <i data-lucide="file-text" class="text-blue"></i>
+                            <span>വരുമാന സർട്ടിഫിക്കറ്റ് ഫോം</span>
+                        </div>
+                        <button class="icon-btn text-blue"><i data-lucide="download"></i></button>
+                    </div>
+                    <div class="pdf-item card flex-between mt-2">
+                        <div class="pdf-info">
+                            <i data-lucide="file-text" class="text-blue"></i>
+                            <span>റേഷൻ കാർഡ് അപേക്ഷ</span>
+                        </div>
+                        <button class="icon-btn text-blue"><i data-lucide="download"></i></button>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- SCREEN: Marketplace -->
+        <section id="screen-market" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-home')"><i data-lucide="arrow-left"></i></button>
+                <div class="header-title">നാട്ടുചന്ത (Marketplace)</div>
+                <div></div>
+            </header>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <div class="tab active mkt-tab" onclick="switchMarketTab('shop')">Shop Products<br><small>സാധനങ്ങൾ
+                        വാങ്ങാൻ</small></div>
+                <div class="tab mkt-tab" onclick="switchMarketTab('vendor')">Vendor
+                    Dashboard<br><small>വിൽപനക്കാർക്ക്</small></div>
+            </div>
+
+            <main class="padding-main" style="height: calc(100vh - 120px);">
+
+                <!-- Shop View -->
+                <div id="mkt-view-shop" class="mkt-view active">
+                    <div class="search-bar mb-4">
+                        <i data-lucide="search"></i>
+                        <input type="text" placeholder="Search products or shops...">
+                    </div>
+                    <!-- Dynamic Products render here -->
+                    <div class="market-grid" id="market-products-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Vendor Dashboard View -->
+                <div id="mkt-view-vendor" class="mkt-view" style="display: none;">
+
+                    <!-- If NOT registered vendor -->
+                    <div id="vendor-registration-card" class="card text-center" style="display:none;">
+                        <i data-lucide="store"
+                            style="width:48px;height:48px;color:var(--primary-blue);margin-bottom:16px;"></i>
+                        <h3 class="mb-2">Become a Vendor</h3>
+                        <p class="text-muted mb-4">Register your local shop or Kudumbashree unit to sell directly to
+                            Ward 18 residents.</p>
+                        <button class="btn-primary w-full" onclick="registerVendor()">Register Now</button>
+                    </div>
+
+                    <!-- If IS registered vendor (Pending) -->
+                    <div id="vendor-pending-card" class="card text-center" style="display:none;">
+                        <div class="icon-wrapper orange" style="margin: 0 auto 16px;"><i data-lucide="clock"></i></div>
+                        <h3 class="mb-2">Registration Pending</h3>
+                        <p class="text-muted">Your vendor registration is currently under review by the Admin.</p>
+                    </div>
+
+                    <!-- If IS registered vendor (Approved) -->
+                    <div id="vendor-dashboard-card" style="display:none;">
+                        <div class="flex-between mb-2">
+                            <h3>My Shop: <span id="my-shop-name" class="text-blue"></span></h3>
+                            <button class="btn-outline-sm" onclick="showAddProductModal()"><i data-lucide="plus"
+                                    style="width:16px;height:16px;margin-bottom:-3px;"></i> Add Product</button>
+                        </div>
+                        <div class="market-grid" id="vendor-my-products-container">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+        </section>
+
+        <!-- SCREEN: Grievances (പരാതികൾ) -->
+        <section id="screen-grievances" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-home')"><i data-lucide="arrow-left"></i></button>
+                <div class="header-title">പരാതികൾ</div>
+                <div></div>
+            </header>
+            <main class="padding-main">
+                <h3 class="mb-2">Submit a Grievance</h3>
+                <div class="card">
+                    <form
+                        onsubmit="event.preventDefault(); if(!requireLogin('submit a grievance')) return; alert('പരാതി അയച്ചു! (Grievance Submitted)'); navigate('screen-home');">
+                        <div class="input-group">
+                            <label>Subject (വിഷയം)</label>
+                            <input type="text" placeholder="e.g., Waste Management, Street Light" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Description (വിവരണം)</label>
+                            <textarea rows="4"
+                                style="width: 100%; padding: 12px; border: 1px solid #E2E8F0; border-radius: var(--radius-md); font-family: inherit;"
+                                placeholder="Describe your issue..." required></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Add Photo (Optional)</label>
+                            <input type="file" accept="image/*" style="border: none; padding: 0;">
+                        </div>
+                        <button type="submit" class="btn-primary-red w-full mt-2">Submit to Admin</button>
+                    </form>
+                </div>
+            </main>
+        </section>
+
+        <!-- SCREEN: Jobs (തൊഴിൽ) -->
+        <section id="screen-jobs" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-home')"><i data-lucide="arrow-left"></i></button>
+                <div class="header-title">തൊഴിൽ ഡയറക്ടറി</div>
+                <div></div>
+            </header>
+            <main class="padding-main">
+                <div class="search-bar mb-4">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search (e.g., Electrician, Plumber)">
+                </div>
+
+                <!-- Categories View -->
+                <div id="jobs-view-categories" class="active mt-2">
+                    <div class="service-grid" id="jobs-category-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Workers List View -->
+                <div id="jobs-view-workers" style="display: none;" class="mt-2">
+                    <button class="btn-outline-sm mb-4" onclick="showJobCategories()"><i data-lucide="arrow-left"
+                            style="width:14px;height:14px;margin-bottom:-2px;"></i> Back</button>
+                    <h3 id="jobs-selected-category-title" class="mb-4 text-blue"></h3>
+                    <div class="job-list" id="jobs-workers-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- SCREEN: Emergency (എമർജൻസി) -->
+        <section id="screen-emergency" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-home')"><i data-lucide="arrow-left"></i></button>
+                <div class="header-title">എമർജൻസി</div>
+                <div></div>
+            </header>
+            <main class="padding-main">
+                <h3 class="mb-2">Important Contacts</h3>
+                <div class="emergency-list">
+                    <div class="donor-card card border-left-red">
+                        <div class="donor-info">
+                            <div class="icon-wrapper red"><i data-lucide="shield"></i></div>
+                            <div class="details">
+                                <h4>Police Station</h4>
+                                <span>Local Police</span>
+                            </div>
+                        </div>
+                        <button class="icon-btn call-btn"><i data-lucide="phone"></i></button>
+                    </div>
+                    <div class="donor-card card border-left-red mt-2">
+                        <div class="donor-info">
+                            <div class="icon-wrapper red" style="background:var(--primary-red);color:white;"><i
+                                    data-lucide="truck"></i></div>
+                            <div class="details">
+                                <h4>Fire Force</h4>
+                                <span>Fire & Rescue</span>
+                            </div>
+                        </div>
+                        <button class="icon-btn call-btn"><i data-lucide="phone"></i></button>
+                    </div>
+                    <div class="donor-card card border-left-red mt-2">
+                        <div class="donor-info">
+                            <div class="icon-wrapper red"><i data-lucide="activity"></i></div>
+                            <div class="details">
+                                <h4>Ambulance</h4>
+                                <span>24x7 Service</span>
+                            </div>
+                        </div>
+                        <button class="icon-btn call-btn"><i data-lucide="phone"></i></button>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- SCREEN: Haritha Karma Sena (ഹരിതകർമ്മ സേന) -->
+        <section id="screen-haritha" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-home')"><i data-lucide="arrow-left"></i></button>
+                <div class="header-title">ഹരിതകർമ്മ സേന</div>
+                <div></div>
+            </header>
+            <main class="padding-main">
+                <div class="card bg-blue-light border-left-green mb-4" style="border-left: 4px solid #137333;">
+                    <h3 class="mb-2" style="color: #137333;"><i data-lucide="calendar"></i> അടുത്ത ശേഖരണം</h3>
+                    <p><strong>തീയതി:</strong> 25 November 2024</p>
+                    <p><strong>ഇനം:</strong> പ്ലാസ്റ്റിക് മാലിന്യങ്ങൾ (Plastic Waste)</p>
+                    <p class="text-muted mt-2 text-sm">ദയവായി മാലിന്യങ്ങൾ കഴുകി ഉണക്കി സൂക്ഷിക്കുക.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="mb-2">പ്രത്യേക കളക്ഷൻ ബുക്ക് ചെയ്യുക</h3>
+                    <form
+                        onsubmit="event.preventDefault(); if(!requireLogin('book special collections')) return; alert('Request sent! (അപേക്ഷ സമർപ്പിച്ചു)'); navigate('screen-home');">
+                        <div class="input-group">
+                            <label>മാലിന്യത്തിന്റെ സ്വഭാവം (Waste Type)</label>
+                            <select required>
+                                <option value="">Select Type</option>
+                                <option value="e-waste">ഇ-മാലിന്യങ്ങൾ (E-Waste)</option>
+                                <option value="glass">കുപ്പി / ഗ്ലാസ് (Glass)</option>
+                                <option value="bulk">കൂടുതൽ അളവിലുള്ള പ്ലാസ്റ്റിക്</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>വിലാസം (Address/Details)</label>
+                            <input type="text" placeholder="House name/number" required>
+                        </div>
+                        <button type="submit" class="btn-primary" style="background: #137333; width: 100%;">Request
+                            Special Collection</button>
+                    </form>
+                </div>
+            </main>
+        </section>
+
+        <!-- SCREEN: Blood Request Form (SOS) -->
+        <section id="screen-blood-request" class="screen bg-gray sub-screen">
+            <header class="app-header">
+                <button class="icon-btn" onclick="navigate('screen-bloodbank')"><i
+                        data-lucide="arrow-left"></i></button>
+                <div class="header-title">രക്തം ആവശ്യമുണ്ട് (SOS)</div>
+                <div></div>
+            </header>
+            <main class="padding-main">
+                <div class="card">
+                    <h3 class="mb-2 text-red"><i data-lucide="alert-circle" class="icon-red"></i> Emergency Blood
+                        Request</h3>
+                    <p class="text-muted mb-4">Please fill this form only for genuine emergencies. All donors will be
+                        notified.</p>
+                    <form
+                        onsubmit="event.preventDefault(); if(!requireLogin('post a blood request')) return; alert('Emergency request broadcasted successfully!'); navigate('screen-bloodbank');">
+                        <div class="input-group">
+                            <label>Patient Name (രോഗിയുടെ പേര്)</label>
+                            <input type="text" placeholder="Patient's Name" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Required Blood Group (ആവശ്യമുള്ള ഗ്രൂപ്പ്)</label>
+                            <select required>
+                                <option value="">Select Group</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Hospital Details (ആശുപത്രിയുടെ പേര്)</label>
+                            <input type="text" placeholder="Hospital Name & Location" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Contact Number (ഫോൺ നമ്പർ)</label>
+                            <input type="tel" placeholder="10-digit emergency contact" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Units Required (എത്ര യൂണിറ്റ്)</label>
+                            <input type="number" min="1" max="10" placeholder="e.g. 2" required>
+                        </div>
+                        <button type="submit" class="btn-sos-large w-full mt-2">Submit SOS Request</button>
+                    </form>
+                </div>
+            </main>
+        </section>
+
+        <!-- Modals for Marketplace -->
+        <!-- Add Product Modal -->
+        <div id="modal-add-product" class="drawer-overlay hidden"
+            style="justify-content:center; align-items:center; display:flex;" onclick="event.stopPropagation()">
+            <div class="card" style="width: 90%; max-width: 400px; z-index: 101;" onclick="event.stopPropagation()">
+                <div class="flex-between mb-4">
+                    <h3>Add New Product</h3>
+                    <button class="icon-btn text-muted" onclick="hideAddProductModal()"><i data-lucide="x"></i></button>
+                </div>
+                <form id="form-add-product" onsubmit="event.preventDefault(); submitAddProduct();">
+                    <div class="input-group">
+                        <label>Product Name (പേര്)</label>
+                        <input type="text" id="add-prod-name" placeholder="E.g., കറിപ്പൊടികൾ" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Price & Unit (വില)</label>
+                        <input type="text" id="add-prod-price" placeholder="E.g., ₹150 / പാക്കറ്റ്" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Product Image URL (Optional)</label>
+                        <input type="text" id="add-prod-img" placeholder="https://...">
+                    </div>
+                    <button type="submit" class="btn-primary w-full mt-2">Add Product</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- SCREEN: Admin Dashboard -->
+        <section id="screen-admin" class="screen bg-gray">
+            <header class="app-header dark">
+                <button class="icon-btn text-white" onclick="navigate('screen-welcome')"><i
+                        data-lucide="log-out"></i></button>
+                <div class="header-title text-white">Admin Dashboard</div>
+                <div></div>
+            </header>
+            <main class="padding-main">
+                <div class="stats-grid mt-2">
+                    <div class="stat-card card">
+                        <p>Total Users</p>
+                        <h3>1,245</h3>
+                    </div>
+                    <div class="stat-card card">
+                        <p>Pending Vendors</p>
+                        <h3 class="text-red" id="admin-vendor-count">1</h3>
+                    </div>
+                    <div class="stat-card card">
+                        <p>Total Grievances</p>
+                        <h3 style="color:#E37400;">12</h3>
+                    </div>
+                    <div class="stat-card card">
+                        <p>Scheme Interests</p>
+                        <h3>48</h3>
+                    </div>
+                </div>
+
+                <h3 class="mt-4 mb-2">Quick Actions</h3>
+                <div class="admin-actions">
+                    <div class="action-card card" onclick="adminApproveVendor()">
+                        <div class="icon-wrapper orange"><i data-lucide="store"></i></div>
+                        <div style="flex: 1;">
+                            <p style="margin-bottom: 4px;">Approve Vendors</p>
+                            <span class="text-muted" style="font-size: 0.85rem; font-weight: normal;">Review pending
+                                shop registrations</span>
+                        </div>
+                        <i data-lucide="chevron-right" class="text-muted"></i>
+                    </div>
+                    <div class="action-card card" onclick="alert('Open Broadcast Form')">
+                        <i data-lucide="radio" class="text-blue"></i>
+                        <span>Broadcast News</span>
+                    </div>
+                    <div class="action-card card" onclick="alert('Viewing Grievance Reports')">
+                        <i data-lucide="alert-triangle" style="color:var(--primary-red)"></i>
+                        <span>View Complaints</span>
+                    </div>
+                    <div class="action-card card" onclick="alert('Open Scheme Tracker')">
+                        <i data-lucide="clipboard-list" class="text-blue"></i>
+                        <span>Scheme Tracker</span>
+                    </div>
+                    <div class="action-card card" onclick="alert('Upload PDF')">
+                        <i data-lucide="upload" class="text-blue"></i>
+                        <span>Content Manager</span>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <h3>Recent Scheme Interests</h3>
+                    <ul class="admin-list">
+                        <li>
+                            <span>Rahul K - Life Mission</span>
+                            <span class="badge blue">Form Collected</span>
+                        </li>
+                        <li>
+                            <span>Akhil M - Krishi Subsidy</span>
+                            <span class="badge orange">Pending</span>
+                        </li>
+                    </ul>
+                </div>
+            </main>
+        </section>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
