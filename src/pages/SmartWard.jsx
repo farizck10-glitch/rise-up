@@ -7,7 +7,8 @@ import {
     Landmark, ScrollText, Send, Phone,
     AlertCircle, FileCheck, CheckCircle2,
     Image as ImageIcon, Search, Plus, Clock, CheckCircle, Star,
-    X, Users, Briefcase, Home, MessageSquare
+    X, Users, Briefcase, Home, MessageSquare,
+    ExternalLink, FileBadge, ClipboardEdit, ChevronDown, ChevronRight, Copy, Check
 } from 'lucide-react';
 
 export default function SmartWard() {
@@ -30,6 +31,9 @@ export default function SmartWard() {
     const [webViewUrl, setWebViewUrl] = useState(null);
     const [webViewTitle, setWebViewTitle] = useState("");
     const fileInputRef = useRef(null);
+    const [smartFill, setSmartFill] = useState({ name: '', houseNo: '', surveyNo: '', aadhaarLast4: '' });
+    const [smartFillCopied, setSmartFillCopied] = useState(false);
+    const [expandedGuide, setExpandedGuide] = useState(null);
 
     const openWebView = (url, title) => {
         setWebViewUrl(url);
@@ -484,6 +488,286 @@ export default function SmartWard() {
                     </motion.div>
 
                 </div>
+
+                {/* ═══════════════════════════════════════════
+                    VILLAGE OFFICE SERVICES  (e-District)
+                ═══════════════════════════════════════════ */}
+
+                {/* Section Divider */}
+                <div className="flex items-center gap-3 my-2">
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-white px-3 py-1 rounded-full border border-slate-100 shadow-sm whitespace-nowrap">
+                        Village Office Services
+                    </span>
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                </div>
+
+                {/* ── e-District Direct Links ── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
+                    className="rounded-[28px] bg-gradient-to-br from-[#1E3A8A] via-[#1a2f6e] to-[#0d1440] border border-blue-400/20 shadow-2xl overflow-hidden p-[1px]"
+                >
+                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 blur-[60px] rounded-full pointer-events-none" />
+
+                        {/* Header */}
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shrink-0">
+                                <FileBadge className="w-5 h-5 text-blue-300" />
+                            </div>
+                            <div>
+                                <h3 className="text-[15px] font-black text-white tracking-tight">Village Office Services</h3>
+                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">e-District Kerala · Direct Links</p>
+                            </div>
+                        </div>
+
+                        {/* e-District service buttons */}
+                        <div className="grid grid-cols-2 gap-2.5">
+                            {[
+                                {
+                                    label: 'Pay Land Tax',
+                                    mal: '\u0d2d\u0d42\u0d28\u0d3f\u0d15\u0d41\u0d24\u0d3f',
+                                    url: 'https://edistrict.kerala.gov.in/K-SMART/land-tax',
+                                    icon: Home,
+                                    color: 'bg-green-500/15 border-green-400/25 text-green-300',
+                                    iconBg: 'bg-green-500/20 border-green-400/30',
+                                },
+                                {
+                                    label: 'Income Certificate',
+                                    mal: '\u0d35\u0d30\u0d41\u0d2e\u0d3e\u0d28 \u0d38\u0d7c\u0d1f\u0d4d\u0d1f\u0d3f\u0d2b\u0d3f\u0d15\u0d4d\u0d15\u0d31\u0d4d\u0d31\u0d4d',
+                                    url: 'https://edistrict.kerala.gov.in/K-SMART/certificate/income',
+                                    icon: FileText,
+                                    color: 'bg-indigo-500/15 border-indigo-400/25 text-indigo-300',
+                                    iconBg: 'bg-indigo-500/20 border-indigo-400/30',
+                                },
+                                {
+                                    label: 'Caste Certificate',
+                                    mal: '\u0d1c\u0d3e\u0d24\u0d3f \u0d38\u0d7c\u0d1f\u0d4d\u0d1f\u0d3f\u0d2b\u0d3f\u0d15\u0d4d\u0d15\u0d31\u0d4d\u0d31\u0d4d',
+                                    url: 'https://edistrict.kerala.gov.in/K-SMART/certificate/caste',
+                                    icon: FileBadge,
+                                    color: 'bg-amber-500/15 border-amber-400/25 text-amber-300',
+                                    iconBg: 'bg-amber-500/20 border-amber-400/30',
+                                },
+                                {
+                                    label: 'Possession Certificate',
+                                    mal: '\u0d15\u0d48\u0d35\u0d36 \u0d38\u0d7c\u0d1f\u0d4d\u0d1f\u0d3f\u0d2b\u0d3f\u0d15\u0d4d\u0d15\u0d31\u0d4d\u0d31\u0d4d',
+                                    url: 'https://edistrict.kerala.gov.in/',
+                                    icon: Landmark,
+                                    color: 'bg-rose-500/15 border-rose-400/25 text-rose-300',
+                                    iconBg: 'bg-rose-500/20 border-rose-400/30',
+                                },
+                            ].map((svc) => {
+                                const Icon = svc.icon;
+                                return (
+                                    <a
+                                        key={svc.label}
+                                        href={svc.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`flex flex-col gap-2.5 rounded-2xl p-3.5 border ${svc.color} hover:brightness-110 transition-all group active:scale-95`}
+                                    >
+                                        <div className={`w-9 h-9 rounded-xl ${svc.iconBg} border flex items-center justify-center shrink-0`}>
+                                            <Icon className="w-4 h-4" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[12px] font-bold text-white leading-tight">{svc.label}</p>
+                                            <p className="text-[10px] text-blue-200/40 font-medium mt-0.5 font-malayalam">{svc.mal}</p>
+                                        </div>
+                                        <div className="flex items-center gap-1 text-[9px] font-black uppercase tracking-wider opacity-50 group-hover:opacity-80 transition-opacity">
+                                            <ExternalLink className="w-2.5 h-2.5" /> e-District
+                                        </div>
+                                    </a>
+                                );
+                            })}
+                        </div>
+
+                        <p className="text-center text-[10px] text-blue-300/25 font-semibold mt-4">
+                            Opens official Kerala e-District portal in browser
+                        </p>
+                    </div>
+                </motion.div>
+
+                {/* ── Village Guide: Manual Services ── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
+                    className="rounded-[28px] bg-gradient-to-br from-[#1E3A8A] to-[#0a1640] border border-blue-400/20 shadow-xl overflow-hidden p-[1px]"
+                >
+                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center shrink-0">
+                                <ClipboardEdit className="w-5 h-5 text-amber-300" />
+                            </div>
+                            <div>
+                                <h3 className="text-[15px] font-black text-white tracking-tight">Village Guide</h3>
+                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">Manual Services — Physical Forms</p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-2.5">
+                            {/* Guide cards */}
+                            {[
+                                {
+                                    id: 'mutation',
+                                    title: 'Mutation (പോക്കുവരവ്)',
+                                    tag: 'Land Transfer',
+                                    tagColor: 'text-green-300 bg-green-500/20 border-green-400/25',
+                                    docs: [
+                                        'Sale deed / Gift deed (registered)',
+                                        'Previous land tax receipt',
+                                        'Aadhaar card of new owner',
+                                        'Application form (from Village Office)',
+                                        'Attested copy of Thandaper (survey no.)',
+                                    ],
+                                    steps: [
+                                        'Collect application from Village Office or download from e-District',
+                                        'Attach all required documents above',
+                                        'Submit at Village Office counter with ₹10 stamp',
+                                        'Receive acknowledgement with tracking number',
+                                        'Mutation entry usually done within 30 working days',
+                                    ],
+                                },
+                                {
+                                    id: 'correction',
+                                    title: 'Correction of Records',
+                                    tag: 'Record Fix',
+                                    tagColor: 'text-rose-300 bg-rose-500/20 border-rose-400/25',
+                                    docs: [
+                                        'Proof of original (SSLC / Aadhaar / Ration card)',
+                                        'Existing document with the error',
+                                        'Affidavit (from notary) if name mismatch',
+                                        'Gazette notification (if applicable)',
+                                    ],
+                                    steps: [
+                                        'Visit Village Office with originals + copies',
+                                        'Fill Correction Application Form (Form 8)',
+                                        'Village Officer verifies documents',
+                                        'Correction order issued within 15 days',
+                                        'Collect corrected certificate in person',
+                                    ],
+                                },
+                            ].map((guide) => (
+                                <div key={guide.id} className="rounded-2xl bg-white/[0.05] border border-white/10 overflow-hidden">
+                                    <button
+                                        onClick={() => setExpandedGuide(expandedGuide === guide.id ? null : guide.id)}
+                                        className="w-full flex items-center justify-between px-4 py-3.5 text-left hover:bg-white/[0.04] transition-colors"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${guide.tagColor}`}>{guide.tag}</span>
+                                            <p className="text-[13px] font-bold text-white">{guide.title}</p>
+                                        </div>
+                                        <ChevronDown className={`w-4 h-4 text-blue-300/50 shrink-0 transition-transform duration-200 ${expandedGuide === guide.id ? 'rotate-180' : ''}`} />
+                                    </button>
+
+                                    <AnimatePresence initial={false}>
+                                        {expandedGuide === guide.id && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.25 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="px-4 pb-4 space-y-3 border-t border-white/[0.07] pt-3">
+                                                    <div>
+                                                        <p className="text-[9px] font-black uppercase tracking-widest text-amber-300/60 mb-2">Required Documents</p>
+                                                        <ul className="space-y-1.5">
+                                                            {guide.docs.map((doc, i) => (
+                                                                <li key={i} className="flex items-start gap-2 text-[11px] text-blue-100/65">
+                                                                    <CheckCircle2 className="w-3 h-3 text-green-400 shrink-0 mt-0.5" />
+                                                                    {doc}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[9px] font-black uppercase tracking-widest text-blue-300/60 mb-2">Steps</p>
+                                                        <ol className="space-y-1.5">
+                                                            {guide.steps.map((step, i) => (
+                                                                <li key={i} className="flex items-start gap-2 text-[11px] text-blue-100/65">
+                                                                    <span className="w-4 h-4 rounded-full bg-blue-500/20 border border-blue-400/25 flex items-center justify-center text-[8px] font-black text-blue-300 shrink-0 mt-0.5">{i + 1}</span>
+                                                                    {step}
+                                                                </li>
+                                                            ))}
+                                                        </ol>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* ── Smart Fill Form ── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}
+                    className="rounded-[28px] bg-gradient-to-br from-[#162b5e] to-[#0a1236] border border-blue-400/20 shadow-xl overflow-hidden p-[1px]"
+                >
+                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6">
+                        <div className="flex items-center gap-3 mb-1">
+                            <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shrink-0">
+                                <CreditCard className="w-5 h-5 text-indigo-300" />
+                            </div>
+                            <div>
+                                <h3 className="text-[15px] font-black text-white tracking-tight">Smart Fill</h3>
+                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">Pre-fill your details · Copy to e-District</p>
+                            </div>
+                        </div>
+                        <p className="text-[11px] text-blue-200/40 mb-4 ml-[52px] leading-snug">
+                            Save your basic info here, then copy and paste directly on e-District forms.
+                        </p>
+
+                        <div className="space-y-3">
+                            {[
+                                { key: 'name', label: 'Full Name (as in records)', placeholder: 'e.g. Rajan K. Nair', type: 'text' },
+                                { key: 'houseNo', label: 'House / Panchayat Number', placeholder: 'e.g. P-14', type: 'text' },
+                                { key: 'surveyNo', label: 'Survey / Thandaper Number', placeholder: 'e.g. 124/B3', type: 'text' },
+                                { key: 'aadhaarLast4', label: 'Aadhaar Last 4 Digits', placeholder: 'e.g. 5678', type: 'number', max: 4 },
+                            ].map((field) => (
+                                <div key={field.key}>
+                                    <p className="text-[9px] font-black uppercase tracking-widest text-blue-300/40 mb-1">{field.label}</p>
+                                    <input
+                                        type={field.type}
+                                        maxLength={field.max || 80}
+                                        placeholder={field.placeholder}
+                                        value={smartFill[field.key]}
+                                        onChange={e => setSmartFill(prev => ({ ...prev, [field.key]: e.target.value }))}
+                                        className="w-full bg-white/[0.06] border border-white/10 rounded-2xl px-4 py-3 text-[13px] text-white placeholder:text-white/20 focus:outline-none focus:border-blue-400/40 focus:bg-white/[0.09] transition-all"
+                                    />
+                                </div>
+                            ))}
+
+                            <motion.button
+                                onClick={() => {
+                                    const text = `Name: ${smartFill.name}\nHouse No: ${smartFill.houseNo}\nSurvey No: ${smartFill.surveyNo}\nAadhaar (Last 4): ${smartFill.aadhaarLast4}`;
+                                    navigator.clipboard?.writeText(text);
+                                    setSmartFillCopied(true);
+                                    setTimeout(() => setSmartFillCopied(false), 2500);
+                                }}
+                                disabled={!smartFill.name}
+                                whileTap={{ scale: 0.97 }}
+                                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-black text-[13px] transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-lg"
+                                style={{ background: smartFillCopied ? 'linear-gradient(135deg,#16a34a,#15803d)' : 'linear-gradient(135deg,#3b82f6,#6366f1)' }}
+                            >
+                                {smartFillCopied
+                                    ? <><Check className="w-4 h-4" /> Copied to Clipboard!</>
+                                    : <><Copy className="w-4 h-4" /> Copy Details for e-District</>}
+                            </motion.button>
+
+                            <a
+                                href="https://edistrict.kerala.gov.in/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 py-3 rounded-2xl text-[12px] font-bold text-blue-300/70 hover:text-blue-200 transition-colors border border-white/10 hover:bg-white/[0.05]"
+                            >
+                                <ExternalLink className="w-3.5 h-3.5" /> Open e-District Kerala
+                            </a>
+                        </div>
+                    </div>
+                </motion.div>
+
             </div>
         </div>
     );

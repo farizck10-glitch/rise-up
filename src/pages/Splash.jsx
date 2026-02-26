@@ -49,12 +49,27 @@ export default function Splash() {
                     <span className="font-malayalam font-bold text-lg">തുടങ്ങാം</span>
                     <span className="text-[11px] uppercase tracking-widest font-semibold opacity-80 mt-0.5">Get Started</span>
                 </button>
-                <button
+                <motion.button
                     onClick={() => navigate('/welcome')}
-                    className="w-full bg-transparent text-slate-500 py-3 rounded-2xl text-md font-medium hover:bg-slate-100 transition-all focus:outline-none focus:ring-4 focus:ring-slate-100 active:scale-95"
+                    whileTap={{ scale: 0.97 }}
+                    className="w-full relative py-4 rounded-2xl font-black text-[13px] tracking-[0.18em] uppercase transition-all active:scale-95 focus:outline-none overflow-hidden group"
+                    style={{
+                        background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0f172a 100%)',
+                        border: '1.5px solid rgba(212,180,131,0.55)',
+                        boxShadow: '0 0 18px 0 rgba(212,180,131,0.18), 0 4px 24px 0 rgba(30,58,138,0.28)',
+                        color: '#D4B483',
+                    }}
                 >
-                    Skip for Now
-                </button>
+                    {/* Inner shimmer on hover */}
+                    <span className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{ background: 'linear-gradient(135deg,rgba(212,180,131,0.08) 0%,rgba(99,102,241,0.06) 100%)' }} />
+                    <span className="relative z-10 flex flex-col items-center gap-0.5">
+                        <span style={{ letterSpacing: '0.2em' }}>EXPLORE SERVICES</span>
+                        <span className="text-[9px] font-bold tracking-widest uppercase opacity-50" style={{ color: '#D4B483', letterSpacing: '0.25em' }}>
+                            Smart Ward · Village Services
+                        </span>
+                    </span>
+                </motion.button>
             </motion.div>
         </div>
     );

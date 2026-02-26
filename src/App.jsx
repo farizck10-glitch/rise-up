@@ -16,6 +16,7 @@ const GreenCulture = lazy(() => import('./pages/GreenCulture'))
 const Profile = lazy(() => import('./pages/Profile'))
 const Marketplace = lazy(() => import('./pages/Marketplace'))
 const Updates = lazy(() => import('./pages/Updates'))
+const GramasabhaPortal = lazy(() => import('./pages/GramasabhaPortal'))
 import AuthModal from './components/AuthModal'
 import BottomNav from './components/BottomNav'
 import Sidebar from './components/Sidebar'
@@ -37,16 +38,16 @@ function App() {
   return (
     <div className="w-full min-h-screen bg-black/5 flex justify-center">
       {/* 
-        Responsive Wrapper: Mobile-first max-w-full, expanding to max-w-screen-xl on Desktop.
+        Responsive Wrapper: Full width for proper dashboard scaling.
       */}
-      <div className="w-full max-w-screen-xl min-h-screen bg-[#f8fafc] shadow-2xl relative overflow-hidden flex mx-auto">
+      <div className="w-full min-h-screen bg-[#f8fafc] relative overflow-hidden flex mx-auto">
         <AuthModal />
 
         {/* Desktop / Tablet Sidebar (hidden on mobile) */}
         <Sidebar />
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col relative w-full lg:max-w-[calc(100%-280px)] xl:max-w-[calc(100%-320px)] h-screen overflow-y-auto no-scrollbar">
+        <div className="flex-1 min-w-0 flex flex-col relative h-screen overflow-y-auto no-scrollbar">
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
               <AnimatePresence mode="wait">
@@ -64,6 +65,7 @@ function App() {
                   <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
                   <Route path="/marketplace" element={<PageTransition><Marketplace /></PageTransition>} />
                   <Route path="/updates" element={<PageTransition><Updates /></PageTransition>} />
+                  <Route path="/gramasabha" element={<PageTransition><GramasabhaPortal /></PageTransition>} />
                 </Routes>
               </AnimatePresence>
             </Suspense>

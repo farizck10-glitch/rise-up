@@ -29,7 +29,7 @@ export default function Sidebar() {
     };
 
     return (
-        <div className="hidden lg:flex w-[280px] xl:w-[320px] h-screen bg-white border-r border-slate-100 flex-col p-6 shadow-xl z-30 justify-between">
+        <div className="hidden lg:flex w-[280px] xl:w-[320px] shrink-0 h-screen bg-white border-r border-slate-100 flex-col p-6 shadow-xl z-30 justify-between">
             <div>
                 {/* Logo Section */}
                 <div className="flex items-center gap-4 mb-12 cursor-pointer" onClick={() => navigate('/dashboard')}>
@@ -52,10 +52,10 @@ export default function Sidebar() {
                             <button
                                 key={item.id}
                                 onClick={() => handleNavigation(item)}
-                                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 relative group overflow-hidden ${isActive
-                                    ? 'bg-primary/5 text-primary'
-                                    : 'hover:bg-slate-50 text-slate-500 hover:text-slate-800'
-                                    } ${item.highlight && !isActive ? 'hover:bg-rose-50 hover:text-rose-600' : ''}`}
+                                className={`w-full flex items-center justify-center gap-[15px] px-6 py-[18px] rounded-2xl transition-all duration-300 relative group overflow-hidden ${isActive
+                                    ? 'bg-blue-50 text-blue-700 shadow-sm border border-blue-100'
+                                    : 'hover:bg-blue-50 hover:shadow-sm hover:text-blue-600 text-slate-500'
+                                    } ${item.highlight && !isActive ? 'hover:bg-rose-50 hover:text-rose-600 hover:shadow-sm' : ''}`}
                             >
                                 {/* Active Indicator background sweep animation could go here */}
                                 {isActive && (
@@ -67,10 +67,10 @@ export default function Sidebar() {
                                 )}
 
                                 <Icon
-                                    className={`w-6 h-6 z-10 ${isActive ? 'fill-primary/20' : ''} ${item.highlight && isActive ? 'text-rose-600 fill-rose-100' : ''}`}
+                                    className={`w-6 h-6 z-10 shrink-0 ${isActive ? 'text-blue-600 fill-blue-100' : 'group-hover:text-blue-500 group-hover:scale-110 transition-transform duration-300'} ${item.highlight && isActive ? 'text-rose-600 fill-rose-100' : ''}`}
                                     strokeWidth={isActive ? 2.5 : 2}
                                 />
-                                <span className={`font-semibold z-10 text-lg ${isActive ? 'font-bold' : ''}`}>
+                                <span className={`font-semibold z-10 text-[16px] whitespace-nowrap text-left ${isActive ? 'font-bold' : ''}`}>
                                     {item.label}
                                 </span>
 

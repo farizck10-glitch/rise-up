@@ -119,20 +119,13 @@ export default function Signup() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Area / Locality</label>
-                                <select
-                                    name="area"
-                                    value={formData.area}
-                                    onChange={handleChange}
-                                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 px-4 py-3.5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all font-sans appearance-none"
-                                >
-                                    <option value="" disabled>Select your area</option>
-                                    <option value="North">North Zone</option>
-                                    <option value="South">South Zone</option>
-                                    <option value="East">East Zone</option>
-                                    <option value="West">West Zone</option>
-                                    <option value="Center">Central Area</option>
-                                </select>
+                                <label className="block text-sm font-semibold text-slate-700 mb-2">Ward & Locality</label>
+                                <input
+                                    type="text"
+                                    value="Ward 18 - Panayi"
+                                    readOnly
+                                    className="w-full bg-slate-100 cursor-not-allowed border border-slate-200 text-slate-600 font-semibold px-4 py-3.5 rounded-2xl focus:outline-none transition-all font-sans"
+                                />
                             </div>
                         </>
                     )}

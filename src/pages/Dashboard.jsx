@@ -19,6 +19,8 @@ import {
     Calendar
 } from 'lucide-react';
 import DigitalIDModal from '../components/DigitalIDModal';
+import { EmergencyPopup, ServiceToast, GramasabhaAlert, NotificationCenter } from '../components/Notifications';
+import PensionWidget from '../components/PensionWidget';
 
 const pillars = [
     { id: 1, title: 'നമ്മുടെ വാർഡ്', subtitle: 'Our Ward', descMalayalam: 'വികസന പദ്ധതികൾ', descEnglish: 'Development Projects', icon: Home, color: 'bg-blue-500', path: '/our-ward' },
@@ -31,6 +33,29 @@ const pillars = [
 export default function Dashboard() {
     const navigate = useNavigate();
     const [isIDModalOpen, setIsIDModalOpen] = useState(false);
+    const [isEmergencyOpen, setIsEmergencyOpen] = useState(false);
+    const [isToastOpen, setIsToastOpen] = useState(false);
+    const [isNotifOpen, setIsNotifOpen] = useState(false);
+    const UNREAD_COUNT = 3;
+
+    useEffect(() => {
+        // Trigger generic luxury service toast after a short delay
+        const toastTimer = setTimeout(() => {
+            setIsToastOpen(true);
+        }, 2000);
+
+        // Trigger emergency popup demo ONLY once per session
+        const hasSeenEmergency = sessionStorage.getItem('hasSeenEmergency18');
+        if (!hasSeenEmergency) {
+            const emergencyTimer = setTimeout(() => {
+                setIsEmergencyOpen(true);
+                sessionStorage.setItem('hasSeenEmergency18', 'true');
+            }, 6000);
+            return () => clearTimeout(emergencyTimer);
+        }
+
+        return () => clearTimeout(toastTimer);
+    }, []);
 
     useEffect(() => {
         const hasSeenInvite = sessionStorage.getItem('hasSeenIDInvite');
@@ -118,9 +143,16 @@ export default function Dashboard() {
                             <h2 className="text-white text-xl md:text-2xl lg:text-3xl font-bold font-sans tracking-tight">Welcome to the Smart Ward</h2>
                         </div>
                     </div>
-                    <button className="relative w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-white/20 transition-all hover:bg-white/30 border border-white/10 shadow-inner">
+                    <button
+                        onClick={() => setIsNotifOpen(true)}
+                        className="relative w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-white/20 transition-all hover:bg-white/30 border border-white/10 shadow-inner"
+                    >
                         <Bell className="text-white w-6 h-6 md:w-8 md:h-8" />
-                        <span className="absolute top-3 right-3 w-3 h-3 md:w-4 md:h-4 bg-red-400 rounded-full border-2 border-primary"></span>
+                        {UNREAD_COUNT > 0 && (
+                            <span className="absolute top-2.5 right-2.5 md:top-3 md:right-3 w-3 h-3 md:w-4 md:h-4 bg-red-400 rounded-full border-2 border-primary flex items-center justify-center">
+                                <span className="text-[7px] font-black text-white hidden md:block">{UNREAD_COUNT}</span>
+                            </span>
+                        )}
                     </button>
                 </div>
 
@@ -159,6 +191,13 @@ export default function Dashboard() {
                 </motion.div>
 
                 <DigitalIDModal isOpen={isIDModalOpen} onClose={() => setIsIDModalOpen(false)} />
+                <NotificationCenter isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
+
+                {/* Gramasabha Special Alert Section (Ward 18 Exclusive) */}
+                <GramasabhaAlert />
+
+                {/* Pension Updates Widget */}
+                <PensionWidget />
 
                 {/* Ward Bulletin Slider Section */}
                 <motion.section
@@ -286,6 +325,25 @@ export default function Dashboard() {
                     </div>
                 </motion.section>
             </div>
+            {/* Notification Overlays */}
+            <EmergencyPopup
+                isOpen={isEmergencyOpen}
+                onClose={() => setIsEmergencyOpen(false)}
+                alert={{
+                    type: 'rain',
+                    title: 'Heavy Rain Warning',
+                    message: 'Heavy rainfall expected in Ward 18 (Panayi) over the next 24 hours. Stay indoors and contact emergency services if needed.',
+                    severity: 'red',
+                }}
+            />
+            <ServiceToast
+                isOpen={isToastOpen}
+                onClose={() => setIsToastOpen(false)}
+                title="Pension Mustering"
+                message="Verification camp today at Panchayat Office, 10 AM – 1 PM."
+                icon={Bell}
+                type="warning"
+            />
         </div>
     );
 }
