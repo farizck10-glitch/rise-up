@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Layers, AlertCircle, Newspaper, User } from 'lucide-react';
+import { Home, Layers, AlertCircle, Newspaper, User, ShoppingBag, Briefcase, Leaf } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function Sidebar() {
@@ -16,7 +16,10 @@ export default function Sidebar() {
         { id: 'dashboard', path: '/dashboard', icon: Home, label: 'ഹോം | Home' },
         { id: 'our-ward', path: '/our-ward', icon: Newspaper, label: 'വാർത്തകൾ | Updates' },
         { id: 'smart-ward', path: '/smart-ward', icon: Layers, label: 'സേവനങ്ങൾ | Services' },
-        { id: 'support', path: '/kaithang', icon: AlertCircle, label: 'അത്യാഹിതം | Emergency', highlight: true },
+        { id: 'kaithang', path: '/kaithang', icon: AlertCircle, label: 'അത്യാഹിതം | Emergency', highlight: true },
+        { id: 'workplace', path: '/workplace', icon: Briefcase, label: 'തൊഴിൽ | Workplace' },
+        { id: 'marketplace', path: '/marketplace', icon: ShoppingBag, label: 'ചന്ത | Marketplace' },
+        { id: 'green', path: '/green', icon: Leaf, label: 'നാട്ടുനന്മ | Green' },
         { id: 'profile', path: '/profile', icon: User, label: 'പ്രൊഫൈൽ | Profile' },
     ];
 

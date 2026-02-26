@@ -430,20 +430,19 @@ export default function OurWard() {
                 {/* ── COMMUNITY BULLETIN ── */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}
-                    className="rounded-[28px] bg-gradient-to-br from-[#1E3A8A] via-[#1e3070] to-[#0d1440] border border-blue-400/20 shadow-2xl overflow-hidden p-[1px]"
+                    className="rounded-[28px] bg-white/80 backdrop-blur-xl border border-sky-100 shadow-lg overflow-hidden"
                 >
-                    {/* Glow */}
-                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 blur-[60px] rounded-full pointer-events-none" />
+                    <div className="p-5 md:p-6 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-pink-100 opacity-40 blur-[60px] rounded-full pointer-events-none" />
 
                         {/* Header */}
                         <div className="flex items-center gap-3 mb-5">
-                            <div className="w-10 h-10 rounded-xl bg-pink-500/20 border border-pink-400/30 flex items-center justify-center shrink-0">
-                                <Heart className="w-5 h-5 text-pink-300" />
+                            <div className="w-10 h-10 rounded-xl bg-pink-100 border border-pink-200 flex items-center justify-center shrink-0">
+                                <Heart className="w-5 h-5 text-pink-500" />
                             </div>
                             <div>
-                                <h3 className="text-[16px] font-black text-white tracking-tight leading-none">ഓർമ്മപ്പെടുത്തലുകൾ</h3>
-                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">Community Bulletin · Ward 18</p>
+                                <h3 className="text-[16px] font-black text-slate-800 tracking-tight leading-none">ഓർമ്മപ്പെടുത്തലുകൾ</h3>
+                                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">Community Bulletin · Ward 18</p>
                             </div>
                         </div>
 
@@ -477,16 +476,16 @@ export default function OurWard() {
                             </div>
 
                             {/* Meeting Notice */}
-                            <div className="shrink-0 w-56 snap-center rounded-2xl bg-indigo-500/10 border border-indigo-400/20 p-4 flex flex-col gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-indigo-400/20 border border-indigo-300/25 flex items-center justify-center">
-                                    <CalendarDays className="w-5 h-5 text-indigo-300" />
+                            <div className="shrink-0 w-56 snap-center rounded-2xl bg-indigo-50 border border-indigo-200 p-4 flex flex-col gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-indigo-100 border border-indigo-200 flex items-center justify-center">
+                                    <CalendarDays className="w-5 h-5 text-indigo-500" />
                                 </div>
                                 <div>
-                                    <span className="text-[9px] font-black uppercase tracking-widest text-indigo-300/70 bg-indigo-500/15 px-2 py-0.5 rounded-full border border-indigo-400/20">Meeting</span>
-                                    <p className="text-[13px] font-bold text-white mt-2 leading-tight">Kudumbashree Meeting</p>
-                                    <p className="text-[11px] text-blue-100/60 mt-1 leading-snug">Ward 18 Kudumbashree unit meeting. Feb 28 · 4 PM at Community Hall.</p>
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-indigo-600 bg-indigo-100 px-2 py-0.5 rounded-full border border-indigo-200">Meeting</span>
+                                    <p className="text-[13px] font-bold text-slate-800 mt-2 leading-tight">Kudumbashree Meeting</p>
+                                    <p className="text-[11px] text-slate-500 mt-1 leading-snug">Ward 18 Kudumbashree unit meeting. Feb 28 · 4 PM at Community Hall.</p>
                                 </div>
-                                <p className="text-[9px] text-indigo-300/40 font-semibold mt-auto">All members attend</p>
+                                <p className="text-[9px] text-indigo-400 font-semibold mt-auto">All members attend</p>
                             </div>
 
                             {/* Birth Announcement 2 */}
@@ -503,30 +502,30 @@ export default function OurWard() {
                             </div>
 
                             {/* Local Meeting */}
-                            <div className="shrink-0 w-56 snap-center rounded-2xl bg-amber-500/10 border border-amber-400/20 p-4 flex flex-col gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-amber-400/20 border border-amber-300/25 flex items-center justify-center">
-                                    <Users2 className="w-5 h-5 text-amber-300" />
+                            <div className="shrink-0 w-56 snap-center rounded-2xl bg-amber-50 border border-amber-200 p-4 flex flex-col gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center">
+                                    <Users2 className="w-5 h-5 text-amber-500" />
                                 </div>
                                 <div>
-                                    <span className="text-[9px] font-black uppercase tracking-widest text-amber-300/70 bg-amber-500/15 px-2 py-0.5 rounded-full border border-amber-400/20">Notice</span>
-                                    <p className="text-[13px] font-bold text-white mt-2 leading-tight">Youth Club Meeting</p>
-                                    <p className="text-[11px] text-blue-100/60 mt-1 leading-snug">Ward 18 Youth Club annual planning meet. March 2 · 6 PM · School Ground.</p>
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-200">Notice</span>
+                                    <p className="text-[13px] font-bold text-slate-800 mt-2 leading-tight">Youth Club Meeting</p>
+                                    <p className="text-[11px] text-slate-500 mt-1 leading-snug">Ward 18 Youth Club annual planning meet. March 2 · 6 PM · School Ground.</p>
                                 </div>
-                                <p className="text-[9px] text-amber-300/40 font-semibold mt-auto">Youth only</p>
+                                <p className="text-[9px] text-amber-500 font-semibold mt-auto">Youth only</p>
                             </div>
 
                         </div>
-                        <p className="text-center text-[10px] text-blue-300/30 font-semibold mt-3">Swipe to see more announcements →</p>
+                        <p className="text-center text-[10px] text-slate-400 font-semibold mt-3">Swipe to see more announcements →</p>
                     </div>
                 </motion.div>
 
                 {/* ── WARD HERITAGE & GALLERY ── */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.62 }}
-                    className="rounded-[28px] bg-gradient-to-br from-[#1E3A8A] via-[#1a2f70] to-[#0a1236] border border-blue-400/20 shadow-2xl overflow-hidden p-[1px]"
+                    className="rounded-[28px] bg-white/80 backdrop-blur-xl border border-sky-100 shadow-lg overflow-hidden"
                 >
-                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6 relative overflow-hidden">
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/10 blur-[70px] rounded-full pointer-events-none" />
+                    <div className="p-5 md:p-6 relative overflow-hidden">
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-100 opacity-30 blur-[70px] rounded-full pointer-events-none" />
 
                         {/* Header */}
                         <div className="flex items-center gap-3 mb-5 relative z-10">
@@ -540,14 +539,14 @@ export default function OurWard() {
                         </div>
 
                         {/* Brief History */}
-                        <div className="relative z-10 bg-white/[0.06] border border-white/10 rounded-2xl p-4 mb-5">
+                        <div className="relative z-10 bg-sky-50 border border-sky-100 rounded-2xl p-4 mb-5">
                             <div className="flex items-center gap-2 mb-2">
-                                <BookOpen className="w-3.5 h-3.5 text-amber-300/60" />
-                                <p className="text-[10px] font-black uppercase tracking-widest text-amber-300/60">Brief History of Ward 18</p>
+                                <BookOpen className="w-3.5 h-3.5 text-amber-500" />
+                                <p className="text-[10px] font-black uppercase tracking-widest text-amber-600">Brief History of Ward 18</p>
                             </div>
-                            <p className="text-[12px] text-blue-100/70 leading-relaxed font-malayalam">
+                            <p className="text-[12px] text-slate-600 leading-relaxed font-malayalam">
                                 പനയി ഗ്രാമം അഥവാ വാർഡ് 18, കണ്ണൂർ ജില്ലയുടെ ഒരു ചെറു ഗ്രാമ പഞ്ചായത്ത് ആണ്.
-                                <span className="text-blue-100/50"> ഐതിഹ്യങ്ങളിലൂടെ അറിയപ്പെടുന്ന ഈ വാർഡ്, ഒരു ഉൾഗ്രാമ സംസ്കൃതിയും
+                                <span className="text-slate-500"> ഐതിഹ്യങ്ങളിലൂടെ അറിയപ്പെടുന്ന ഈ വാർഡ്, ഒരു ഉൾഗ്രാമ സംസ്കൃതിയും
                                     ഹരിതാഭ പ്രകൃതിഭംഗിയും പ്രശസ്തമായ ക്ഷേത്ര ഉത്സവങ്ങളും കൊണ്ട്
                                     സമ്പന്നമാണ്. ദശകങ്ങളായി, ഈ വാർഡ് വൈദ്യുതി, ജലവിതരണം,
                                     ആരോഗ്യം, വിദ്യാഭ്യാസം എന്നീ മേഖലകളിൽ ഗണ്യമായ പുരോഗതി കൈവരിച്ചിട്ടുണ്ട്.</span>
@@ -555,7 +554,7 @@ export default function OurWard() {
                         </div>
 
                         {/* Photo Grid */}
-                        <p className="text-[10px] font-black uppercase tracking-widest text-blue-300/40 mb-3 relative z-10">Photo Gallery</p>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 relative z-10">Photo Gallery</p>
                         <div className="grid grid-cols-3 gap-2 relative z-10">
                             {[
                                 { src: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=300&h=300&fit=crop', label: 'ക്ഷേത്ര ഉത്സവം', sub: 'Temple Festival' },
@@ -565,13 +564,13 @@ export default function OurWard() {
                                 { src: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=300&h=300&fit=crop', label: 'ഓണം 2024', sub: 'Onam Celebration' },
                                 { src: null, label: 'ഫോട്ടോ ചേർക്കൂ', sub: 'Add Your Photo' },
                             ].map((item, i) => (
-                                <div key={i} className="relative rounded-2xl overflow-hidden aspect-square bg-white/[0.07] border border-white/10 group cursor-pointer hover:border-blue-400/30 transition-all">
+                                <div key={i} className="relative rounded-2xl overflow-hidden aspect-square bg-sky-50 border border-sky-200 group cursor-pointer hover:border-blue-300 transition-all">
                                     {item.src ? (
                                         <img src={item.src} alt={item.label} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                     ) : (
-                                        <div className="w-full h-full flex flex-col items-center justify-center gap-1">
-                                            <Camera className="w-6 h-6 text-blue-300/30" />
-                                            <span className="text-[8px] text-blue-300/30 font-bold text-center px-2">Add Photo</span>
+                                        <div className="w-full h-full flex flex-col items-center justify-center gap-1 bg-sky-50">
+                                            <Camera className="w-6 h-6 text-slate-400" />
+                                            <span className="text-[8px] text-slate-400 font-bold text-center px-2">Add Photo</span>
                                         </div>
                                     )}
                                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-2 pt-4">
@@ -582,7 +581,7 @@ export default function OurWard() {
                             ))}
                         </div>
 
-                        <p className="text-center text-[10px] text-blue-300/30 font-semibold mt-4 relative z-10">
+                        <p className="text-center text-[10px] text-slate-400 font-semibold mt-4 relative z-10">
                             Contact Ward Member to submit photos for the gallery
                         </p>
                     </div>

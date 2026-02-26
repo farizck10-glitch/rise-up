@@ -18,13 +18,21 @@ export default function AuthChoice() {
     return (
         <div className="flex flex-col justify-between h-screen w-full p-6 bg-background lg:items-center">
             <div className="pt-12 w-full lg:max-w-3xl flex-1 flex flex-col justify-center">
+                {/* Logo Section - Prepared for high-quality SVG/Image */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="w-20 h-20 bg-primary/10 rounded-[2rem] flex items-center justify-center mb-8 mx-auto shadow-sm"
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="flex flex-col items-center mb-12"
                 >
-                    <span className="text-primary text-3xl font-bold font-sans">RU</span>
+                    <div className="w-24 h-24 bg-gradient-to-br from-sky-600 to-blue-700 rounded-[2.5rem] flex items-center justify-center mb-6 shadow-2xl shadow-blue-200/50 relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <svg viewBox="0 0 24 24" className="w-12 h-12 text-white fill-current" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h2 className="text-2xl font-black text-slate-900 tracking-tight">Rise Up</h2>
+                    <p className="text-[10px] uppercase tracking-[.3em] font-bold text-sky-600 mt-1 opacity-80">Panayi Ward</p>
                 </motion.div>
 
                 <motion.h1
@@ -53,17 +61,17 @@ export default function AuthChoice() {
                 >
                     <button
                         onClick={handleLogin}
-                        className="w-full bg-primary text-white py-4 rounded-2xl text-lg font-semibold shadow-floating hover:bg-opacity-90 transition-all focus:outline-none focus:ring-4 focus:ring-primary/20 active:scale-95"
+                        className="w-full bg-gradient-to-r from-sky-600 to-blue-700 text-white py-4 rounded-2xl text-[16px] font-bold shadow-xl shadow-blue-100/50 hover:bg-opacity-90 transition-all active:scale-[0.98] flex flex-col items-center justify-center leading-tight"
                     >
                         ലോഗിൻ / രജിസ്റ്റർ
-                        <span className="block text-[10px] uppercase tracking-widest font-semibold opacity-80 mt-0.5">Login / Sign Up</span>
+                        <span className="text-[10px] uppercase tracking-[0.2em] font-black opacity-60 mt-0.5">Mobile Login / Sign Up</span>
                     </button>
                     <button
                         onClick={handleSkip}
-                        className="w-full bg-slate-50 text-slate-600 border border-slate-200 py-4 rounded-2xl text-lg font-semibold hover:bg-slate-100 transition-all focus:outline-none focus:ring-4 focus:ring-slate-200 active:scale-95"
+                        className="w-full bg-white text-slate-600 border border-slate-200 py-4 rounded-2xl text-[16px] font-bold hover:bg-slate-50 transition-all active:scale-[0.98] flex flex-col items-center justify-center leading-tight"
                     >
                         അതിഥിയായി തുടരുക
-                        <span className="block text-[10px] uppercase tracking-widest font-semibold opacity-60 mt-0.5">Continue as Guest</span>
+                        <span className="text-[10px] uppercase tracking-[0.2em] font-black opacity-40 mt-0.5">Continue as Guest</span>
                     </button>
                 </motion.div>
 

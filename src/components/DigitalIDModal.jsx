@@ -87,6 +87,13 @@ export default function DigitalIDModal({ isOpen, onClose }) {
 
     const startCamera = async () => {
         setCameraError(null);
+
+        // 1. HTTPS Check (getUserMedia requires secure context)
+        if (!window.isSecureContext) {
+            setCameraError('Camera access requires a secure connection (HTTPS). Please ensure you are visiting via a secure URL.');
+            return;
+        }
+
         try {
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 setCameraError('Your browser does not support camera access.');
@@ -112,10 +119,15 @@ export default function DigitalIDModal({ isOpen, onClose }) {
             }
         } catch (err) {
             console.error('Camera error:', err);
+            // 2. Mapping specific error names to user-friendly messages
             if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-                setCameraError('Please allow camera access to take your ID photo.');
-            } else if (err.name === 'NotFoundError') {
+                setCameraError('PERMISSION_DENIED');
+            } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
                 setCameraError('No camera found on this device.');
+            } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+                setCameraError('Camera is already in use by another application.');
+            } else if (err.name === 'SecurityError') {
+                setCameraError('Camera access is restricted for security reasons.');
             } else {
                 setCameraError('Unable to start camera. Please check your device settings.');
             }
@@ -431,7 +443,7 @@ export default function DigitalIDModal({ isOpen, onClose }) {
 
                     {/* Step 3: Live Camera — Luxury Glassmorphism */}
                     {step === 3 && (
-                        <div className="relative flex flex-col items-center bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-b-[2rem] overflow-hidden" style={{ minHeight: '420px' }}>
+                        <div className="relative flex flex-col items-center bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-b-[2rem] overflow-hidden p-6 pb-[calc(2rem+env(safe-area-inset-bottom))]" style={{ minHeight: '480px' }}>
 
                             {/* Decorative glow blobs */}
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
@@ -455,42 +467,72 @@ export default function DigitalIDModal({ isOpen, onClose }) {
 
                                     {cameraError ? (
                                         /* ── CAMERA ERROR FALLBACK ── */
-                                        <div className="z-10 mx-6 mb-8 flex flex-col items-center gap-5">
-                                            <div className="w-52 h-52 rounded-full bg-blue-950/70 border-4 border-red-400/30 ring-4 ring-red-500/10 flex flex-col items-center justify-center gap-3 shadow-2xl">
-                                                <Camera className="w-10 h-10 text-red-400/70" />
-                                                <p className="text-[11px] text-red-300 font-semibold text-center px-4 leading-snug">{cameraError}</p>
+                                        <div className="z-10 mx-6 mb-8 flex flex-col items-center gap-5 w-full">
+                                            <div className="w-48 h-48 rounded-full bg-blue-950/70 border-4 border-red-400/30 ring-4 ring-red-500/10 flex flex-col items-center justify-center gap-3 shadow-2xl p-6">
+                                                <Camera className="w-10 h-10 text-red-400/70 shrink-0" />
+                                                <p className="text-[11px] text-red-300 font-semibold text-center leading-snug">
+                                                    {cameraError === 'PERMISSION_DENIED' ? 'Camera Access Denied' : cameraError}
+                                                </p>
                                             </div>
-                                            <button
-                                                onClick={() => { setCameraError(null); startCamera(); }}
-                                                className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-blue-600/80 backdrop-blur-sm border border-blue-400/30 text-white text-sm font-bold hover:bg-blue-600 transition-all shadow-lg"
-                                            >
-                                                <Camera className="w-4 h-4" /> Try Again
-                                            </button>
-                                            <button
-                                                onClick={() => { setStep(2); }}
-                                                className="text-white/50 text-xs font-semibold hover:text-white/80 transition-colors"
-                                            >
-                                                ← Go Back
-                                            </button>
+
+                                            {cameraError === 'PERMISSION_DENIED' && (
+                                                <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 bg-white/10 backdrop-blur-xl rounded-[1.5rem] p-5 border border-white/20 w-full max-w-[320px] shadow-2xl">
+                                                    <p className="text-[11px] font-black text-blue-300 uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
+                                                        <Info className="w-4 h-4" /> Permission Guide
+                                                    </p>
+                                                    <div className="space-y-3">
+                                                        <div className="flex gap-3">
+                                                            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 text-[10px] font-bold text-blue-300 border border-blue-400/20">1</div>
+                                                            <p className="text-[11px] text-white/80 leading-relaxed"><span className="text-white font-bold">Chrome:</span> Click the **Lock 🔒** or **Settings ⚙️** icon in the address bar.</p>
+                                                        </div>
+                                                        <div className="flex gap-3">
+                                                            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 text-[10px] font-bold text-blue-300 border border-blue-400/20">2</div>
+                                                            <p className="text-[11px] text-white/80 leading-relaxed"><span className="text-white font-bold">Safari:</span> Tap **'AA'** or **'Settings'** → **Website Settings** → Allow Camera.</p>
+                                                        </div>
+                                                        <div className="flex gap-3">
+                                                            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 text-[10px] font-bold text-blue-300 border border-blue-400/20">3</div>
+                                                            <p className="text-[11px] text-white/80 leading-relaxed">Reload the page to apply changes.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            <div className="flex flex-col gap-3 w-full max-w-[280px]">
+                                                <button
+                                                    onClick={() => { setCameraError(null); startCamera(); }}
+                                                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-all shadow-lg active:scale-95"
+                                                >
+                                                    <Camera className="w-4 h-4" /> Try Again
+                                                </button>
+                                                <button
+                                                    onClick={() => { setStep(2); }}
+                                                    className="w-full py-3 rounded-2xl border border-white/10 bg-white/5 text-white/60 text-xs font-semibold hover:text-white transition-colors"
+                                                >
+                                                    ← Go Back to Details
+                                                </button>
+                                            </div>
                                         </div>
                                     ) : (
                                         /* ── CAMERA LIVE FEED ── */
                                         <>
                                             {/* Camera frame — glassmorphism border */}
-                                            <div className="relative z-10 mb-6">
-                                                <div className="w-52 h-52 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl shadow-blue-900/60 ring-4 ring-blue-500/30 bg-blue-950">
+                                            <div className="relative z-10 mb-8 sm:mb-10">
+                                                <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border-4 border-white/30 shadow-[0_0_50px_rgba(59,130,246,0.5)] ring-8 ring-blue-500/10 bg-blue-950/80 backdrop-blur-sm">
                                                     <video
                                                         ref={videoRef}
                                                         autoPlay
                                                         playsInline
                                                         muted
                                                         className="w-full h-full object-cover"
-                                                        style={{ transform: 'scaleX(-1) scale(1.1)' }}
+                                                        style={{ transform: 'scaleX(-1) scale(1.05)' }}
                                                     />
                                                 </div>
-                                                {/* Corner accent rings */}
-                                                <div className="absolute -inset-2 rounded-full border border-blue-400/20 pointer-events-none" />
-                                                <div className="absolute -inset-4 rounded-full border border-blue-400/10 pointer-events-none" />
+                                                {/* Scanning line animation */}
+                                                <motion.div
+                                                    animate={{ top: ['10%', '90%', '10%'] }}
+                                                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                                    className="absolute left-1/2 -translate-x-1/2 w-4/5 h-[2px] bg-blue-400 blur-[1px] shadow-[0_0_10px_#60a5fa] z-20 pointer-events-none"
+                                                />
                                             </div>
 
                                             <canvas ref={canvasRef} className="hidden" />

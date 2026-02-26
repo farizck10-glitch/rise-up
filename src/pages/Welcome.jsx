@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Users } from 'lucide-react';
 
 export default function Welcome() {
     const navigate = useNavigate();
@@ -16,41 +17,41 @@ export default function Welcome() {
                     transition={{ duration: 0.6 }}
                     className="flex flex-col items-center mb-8"
                 >
-                    <div className="relative w-32 h-32 mb-6">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-full p-1 shadow-floating">
-                            <div className="w-full h-full bg-white rounded-full overflow-hidden flex items-center justify-center border-4 border-white">
-                                {/* SVG Avatar Placeholder */}
-                                <svg className="w-16 h-16 text-slate-300" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                </svg>
+                    <div className="relative w-36 h-36 mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-sky-600 to-indigo-600 rounded-3xl p-1 shadow-2xl">
+                            <div className="w-full h-full bg-slate-100 rounded-[1.25rem] overflow-hidden flex items-center justify-center border-4 border-white relative">
+                                {/* Modern SVG Profile Illustration */}
+                                <div className="absolute inset-0 bg-sky-50 flex items-center justify-center">
+                                    <svg viewBox="0 0 100 100" className="w-full h-full p-6 text-sky-400 opacity-60">
+                                        <circle cx="50" cy="35" r="15" fill="currentColor" />
+                                        <path d="M20 85c0-15 10-25 30-25s30 10 30 25" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                        <div className="absolute bottom-0 right-0 w-8 h-8 bg-green-500 border-4 border-white rounded-full flex items-center justify-center">
-                            <span className="text-white text-xs">✓</span>
+                        <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-emerald-500 border-4 border-white rounded-2xl flex items-center justify-center shadow-lg">
+                            <span className="text-white text-sm font-bold">✓</span>
                         </div>
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-800 font-malayalam text-center mb-1">മെമ്പറുടെ സന്ദേശം</h2>
-                    <p className="text-primary font-bold text-xs mt-0 uppercase tracking-widest opacity-80">Member's Message</p>
+                    <h2 className="text-2xl font-black text-slate-800 font-malayalam text-center mb-1">സ്വാഗതം</h2>
+                    <p className="text-sky-600 font-bold text-[10px] mt-0 uppercase tracking-[0.3em] opacity-80">Official Welcome</p>
                 </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-white rounded-[2rem] p-8 shadow-floating border border-slate-50 relative"
+                    className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-2xl shadow-blue-100/50 border border-white relative"
                 >
-                    {/* Quote Icon */}
-                    <div className="absolute top-6 left-6 text-primary/20 text-4xl font-serif">"</div>
-
                     <div className="relative z-10">
-                        <h3 className="text-xl font-bold text-slate-800 font-malayalam mb-4 pl-6 text-center leading-relaxed">പ്രിയ നാട്ടുകാരേ,</h3>
-                        <p className="text-slate-600 font-malayalam leading-relaxed text-center md:text-lg">
-                            നമ്മുടെ വാർഡിന്റെ വികസനവും സേവനങ്ങളും നിങ്ങളുടെ വിരൽത്തുമ്പിൽ എത്തിക്കുക എന്ന ലക്ഷ്യത്തോടെയാണ് ഈ ആപ്പ് നിർമ്മിച്ചിരിക്കുന്നത്. എല്ലാവരുടെയും സഹകരണം പ്രതീക്ഷിക്കുന്നു.
+                        <p className="text-slate-800 font-malayalam leading-relaxed text-center text-lg md:text-xl font-medium">
+                            "നമ്മുടെ പാണായി വാർഡിന്റെ വികസനത്തിലേക്കും ഡിജിറ്റൽ സേവനങ്ങളിലേക്കും ഏവർക്കും സ്വാഗതം."
                         </p>
-                        <div className="mt-6 flex flex-col items-center">
-                            <img src="/vite.svg" alt="Signature Signature" className="h-8 opacity-50 mb-2 grayscale" />
-                            <p className="font-semibold text-slate-800">Member Name</p>
-                            <p className="text-sm text-slate-500">Panchayat Ward Member</p>
+                        <div className="mt-8 flex flex-col items-center">
+                            <div className="w-12 h-px bg-sky-200 mb-4" />
+                            <p className="font-black text-slate-800 text-[14px] uppercase tracking-wider">നിങ്ങളുടെ മെമ്പർ</p>
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Ward Member · Panayi</p>
                         </div>
                     </div>
                 </motion.div>
@@ -63,8 +64,8 @@ export default function Welcome() {
                 className="p-6 bg-gradient-to-t from-background via-background to-transparent z-10 w-full lg:max-w-3xl"
             >
                 <button
-                    onClick={() => navigate('/auth')}
-                    className="w-full bg-primary text-white py-3.5 flex flex-col items-center justify-center rounded-2xl shadow-floating hover:bg-opacity-90 transition-all focus:outline-none focus:ring-4 focus:ring-primary/20 active:scale-95"
+                    onClick={() => navigate('/showcase')}
+                    className="w-full bg-primary text-white py-3.5 flex flex-col items-center justify-center rounded-2xl shadow-floating hover:bg-opacity-90 transition-all focus:outline-none focus:ring-4 focus:ring-primary/20 active:scale-95 transition-all duration-300 shadow-[0_8px_32px_rgba(30,58,138,0.3)]"
                 >
                     <span className="font-malayalam font-bold text-lg">തുടങ്ങാം</span>
                     <span className="text-[11px] uppercase tracking-widest font-semibold opacity-80 mt-0.5">Continue</span>

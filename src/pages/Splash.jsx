@@ -36,7 +36,7 @@ export default function Splash() {
                     transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
                     className="text-[38px] font-bold text-slate-900 font-sans tracking-tight leading-none"
                 >
-                    Rise Up
+                    Panayi Ward
                 </motion.h1>
 
                 {/* Motto — bilingual */}
@@ -74,14 +74,14 @@ export default function Splash() {
             >
                 <button
                     onClick={() => navigate('/welcome')}
-                    className="w-full py-4 rounded-2xl flex flex-col items-center justify-center gap-0.5 focus:outline-none active:scale-[0.98] transition-transform"
+                    className="w-full py-4 rounded-2xl flex flex-col items-center justify-center gap-0.5 focus:outline-none active:scale-[0.98] transition-all duration-300"
                     style={{
                         background: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #6366f1 100%)',
                         boxShadow: '0 8px 32px rgba(30,58,138,0.35), 0 2px 8px rgba(99,102,241,0.2)',
                     }}
                 >
-                    <span className="font-malayalam font-bold text-[18px] text-white leading-none">തുടങ്ങാം</span>
-                    <span className="text-[10px] uppercase tracking-[0.22em] font-bold text-white/60 mt-0.5">Get Started</span>
+                    <span className="font-malayalam font-bold text-[18px] text-white leading-none">പ്രവേശിക്കുക</span>
+                    <span className="text-[10px] uppercase tracking-[0.22em] font-bold text-white/60 mt-0.5">Enter App</span>
                 </button>
             </motion.div>
         </div>

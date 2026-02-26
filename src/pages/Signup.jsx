@@ -140,9 +140,9 @@ export default function Signup() {
             >
                 <button
                     onClick={handleNextStep}
-                    className="w-full bg-primary text-white py-4 rounded-2xl text-lg font-semibold shadow-floating hover:bg-opacity-90 transition-all focus:outline-none focus:ring-4 focus:ring-primary/20 active:scale-95"
+                    className="w-full bg-gradient-to-r from-sky-600 to-blue-700 text-white py-4 rounded-2xl text-[16px] font-bold shadow-xl shadow-blue-100/50 hover:bg-opacity-90 transition-all active:scale-[0.98] flex items-center justify-center"
                 >
-                    {step === 3 ? 'Complete Setup' : 'Continue'}
+                    {step === 1 ? 'Get OTP' : step === 2 ? 'Verify & Continue' : 'Complete Setup'}
                 </button>
             </motion.div>
         </div>

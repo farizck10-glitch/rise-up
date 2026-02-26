@@ -28,9 +28,9 @@ const PENSION_TYPES = [
 ];
 
 const STATUS_STYLE = {
-    'Distributed': { dot: 'bg-green-400', text: 'text-green-300', bg: 'bg-green-500/15', border: 'border-green-400/25', label: 'Distributed' },
-    'Pending': { dot: 'bg-amber-400', text: 'text-amber-300', bg: 'bg-amber-500/15', border: 'border-amber-400/25', label: 'Pending' },
-    'Mustering Due': { dot: 'bg-red-400 animate-pulse', text: 'text-red-300', bg: 'bg-red-500/15', border: 'border-red-400/25', label: 'Mustering Due' },
+    'Distributed': { dot: 'bg-green-400', text: 'text-green-600', bg: 'bg-green-50', border: 'border-green-200', label: 'Distributed' },
+    'Pending': { dot: 'bg-amber-400', text: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-200', label: 'Pending' },
+    'Mustering Due': { dot: 'bg-red-400 animate-pulse', text: 'text-red-600', bg: 'bg-red-50', border: 'border-red-200', label: 'Mustering Due' },
 };
 
 /* ─────────────────────────────────────────────
@@ -61,62 +61,62 @@ export default function PensionWidget() {
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="w-full rounded-[28px] bg-gradient-to-br from-[#1a3272] via-[#1E3A8A] to-[#0d1a4a] relative overflow-hidden shadow-2xl border border-blue-400/20 p-[1px]"
+            className="w-full rounded-[28px] bg-white/85 backdrop-blur-xl relative overflow-hidden shadow-lg border border-sky-200"
         >
-            {/* Ambient glows */}
-            <div className="absolute top-0 left-1/4 w-48 h-48 bg-indigo-500/10 blur-[60px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-blue-600/10 blur-[40px] rounded-full pointer-events-none" />
+            {/* Subtle ambient glows */}
+            <div className="absolute top-0 left-1/4 w-48 h-48 bg-sky-100/70 blur-[60px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-indigo-100/60 blur-[40px] rounded-full pointer-events-none" />
 
-            <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] relative z-10 overflow-hidden">
+            <div className="relative z-10 overflow-hidden">
 
                 {/* ── HEADER ── */}
                 <div className="flex items-center justify-between px-5 md:px-6 pt-5 md:pt-6 pb-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-11 h-11 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shadow-inner shrink-0">
-                            <IndianRupee className="w-5 h-5 text-indigo-300" />
+                        <div className="w-11 h-11 rounded-2xl bg-indigo-100 border border-indigo-200 flex items-center justify-center shadow-sm shrink-0">
+                            <IndianRupee className="w-5 h-5 text-indigo-500" />
                         </div>
                         <div>
                             <div className="flex items-center gap-2">
-                                <h3 className="text-[16px] md:text-[17px] font-black text-white tracking-tight leading-none">Pension Updates</h3>
+                                <h3 className="text-[16px] md:text-[17px] font-black text-slate-800 tracking-tight leading-none">Pension Updates</h3>
                                 {hasMusteringDue && (
-                                    <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500/20 border border-red-400/30 text-red-300 text-[9px] font-bold uppercase tracking-wider">
+                                    <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-50 border border-red-200 text-red-500 text-[9px] font-bold uppercase tracking-wider">
                                         <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
                                         Action Needed
                                     </span>
                                 )}
                             </div>
-                            <p className="text-[11px] text-blue-300/50 font-semibold mt-0.5 uppercase tracking-widest">Ward 18 — Panayi</p>
+                            <p className="text-[11px] text-slate-400 font-semibold mt-0.5 uppercase tracking-widest">Ward 18 — Panayi</p>
                         </div>
                     </div>
                     <button
                         onClick={() => setExpanded(!expanded)}
-                        className="text-blue-300/50 hover:text-blue-200 transition-colors p-1"
+                        className="text-slate-400 hover:text-slate-600 transition-colors p-1"
                     >
                         <ChevronRight className={`w-5 h-5 transition-transform duration-300 ${expanded ? 'rotate-90' : ''}`} />
                     </button>
                 </div>
 
                 {/* ── CURRENT MONTH STATUS BANNER ── */}
-                <div className="mx-4 md:mx-6 mb-4 rounded-2xl bg-green-500/10 border border-green-400/20 px-4 py-3 flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-green-400 shrink-0" />
+                <div className="mx-4 md:mx-6 mb-4 rounded-2xl bg-emerald-50 border border-emerald-200 px-4 py-3 flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
                     <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-2">
-                            <p className="text-[13px] font-bold text-white">{MONTHLY_STATUS.label}</p>
-                            <span className="text-[10px] font-black text-green-300 uppercase tracking-wider bg-green-500/20 px-2 py-0.5 rounded-full border border-green-400/25">
+                            <p className="text-[13px] font-bold text-slate-800">{MONTHLY_STATUS.label}</p>
+                            <span className="text-[10px] font-black text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                                 {MONTHLY_STATUS.status}
                             </span>
                         </div>
-                        <p className="text-[11px] text-blue-100/50 mt-0.5">{MONTHLY_STATUS.note}</p>
+                        <p className="text-[11px] text-slate-400 mt-0.5">{MONTHLY_STATUS.note}</p>
                     </div>
                 </div>
 
                 {/* ── MUSTERING ALERT STRIP (if any type is due) ── */}
                 {hasMusteringDue && (
-                    <div className="mx-4 md:mx-6 mb-4 rounded-2xl bg-amber-500/10 border border-amber-400/25 px-4 py-3 flex items-start gap-3">
-                        <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <div className="mx-4 md:mx-6 mb-4 rounded-2xl bg-amber-50 border border-amber-200 px-4 py-3 flex items-start gap-3">
+                        <AlertCircle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                         <div>
-                            <p className="text-[12px] font-bold text-amber-200">Mustering Starts {NEXT_MUSTERING}</p>
-                            <p className="text-[10px] text-amber-200/60 mt-0.5 leading-snug">
+                            <p className="text-[12px] font-bold text-amber-700">Mustering Starts {NEXT_MUSTERING}</p>
+                            <p className="text-[10px] text-amber-600/80 mt-0.5 leading-snug">
                                 Unmarried Women pension beneficiaries must appear at the Panchayat office for mustering verification.
                             </p>
                         </div>
@@ -134,7 +134,7 @@ export default function PensionWidget() {
                             className="overflow-hidden"
                         >
                             <div className="px-4 md:px-6 pb-4">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-blue-300/40 mb-3">Pension Type Status</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Pension Type Status</p>
 
                                 <div className="space-y-2">
                                     {PENSION_TYPES.map((pension) => {
@@ -145,12 +145,12 @@ export default function PensionWidget() {
                                                 className={`flex items-center justify-between rounded-2xl ${s.bg} border ${s.border} px-4 py-3 gap-3`}
                                             >
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="text-[12px] font-bold text-white leading-tight">{pension.type}</p>
-                                                    <p className="text-[10px] text-blue-200/50 font-medium mt-0.5 font-malayalam">{pension.malayalam}</p>
+                                                    <p className="text-[12px] font-bold text-slate-800 leading-tight">{pension.type}</p>
+                                                    <p className="text-[10px] text-slate-400 font-medium mt-0.5 font-malayalam">{pension.malayalam}</p>
                                                 </div>
                                                 <div className="flex items-center gap-3 shrink-0">
                                                     <div className="text-right hidden sm:block">
-                                                        <div className="flex items-center gap-1 text-blue-300/40 text-[9px] font-bold uppercase tracking-wider">
+                                                        <div className="flex items-center gap-1 text-slate-400 text-[9px] font-bold uppercase tracking-wider">
                                                             <Users className="w-2.5 h-2.5" />
                                                             {pension.beneficiaries}
                                                         </div>
@@ -173,7 +173,7 @@ export default function PensionWidget() {
                 <div className="px-4 md:px-6 pb-5 md:pb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                     <button
                         onClick={() => setExpanded(!expanded)}
-                        className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/[0.06] border border-white/10 text-white/60 text-[12px] font-bold hover:bg-white/[0.1] hover:text-white transition-all"
+                        className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-sky-50 border border-sky-200 text-sky-700 text-[12px] font-bold hover:bg-sky-100 hover:text-sky-800 transition-all"
                     >
                         {expanded ? 'Show Less' : 'View All Pension Types'}
                         <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-200 ${expanded ? 'rotate-90' : ''}`} />
@@ -184,8 +184,8 @@ export default function PensionWidget() {
                         whileTap={{ scale: 0.96 }}
                         onClick={() => { setContacted(true); setTimeout(() => setContacted(false), 3000); }}
                         className={`flex items-center justify-center gap-2 py-3 px-5 rounded-2xl font-bold text-[12px] transition-all shadow-lg whitespace-nowrap ${contacted
-                                ? 'bg-green-500 text-white shadow-green-500/20'
-                                : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-blue-600/25 hover:from-blue-700 hover:to-indigo-700'
+                            ? 'bg-emerald-500 text-white shadow-emerald-200'
+                            : 'bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-sky-200 hover:from-sky-600 hover:to-blue-700'
                             }`}
                     >
                         {contacted ? (

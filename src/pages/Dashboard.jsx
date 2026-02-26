@@ -39,12 +39,10 @@ export default function Dashboard() {
     const UNREAD_COUNT = 3;
 
     useEffect(() => {
-        // Trigger generic luxury service toast after a short delay
         const toastTimer = setTimeout(() => {
             setIsToastOpen(true);
         }, 2000);
 
-        // Trigger emergency popup demo ONLY once per session
         const hasSeenEmergency = sessionStorage.getItem('hasSeenEmergency18');
         if (!hasSeenEmergency) {
             const emergencyTimer = setTimeout(() => {
@@ -83,14 +81,13 @@ export default function Dashboard() {
 
         const scrollInterval = setInterval(() => {
             if (scrollAmount >= scrollMax) {
-                // Reset to start
                 slider.scrollTo({ left: 0, behavior: 'smooth' });
                 scrollAmount = 0;
             } else {
                 slider.scrollBy({ left: slider.clientWidth / 1.2, behavior: 'smooth' });
                 scrollAmount += slider.clientWidth / 1.2;
             }
-        }, 5000); // Scroll every 5 seconds
+        }, 5000);
 
         return () => clearInterval(scrollInterval);
     }, []);
@@ -130,9 +127,9 @@ export default function Dashboard() {
     ];
 
     return (
-        <div className="flex flex-col h-screen w-full bg-[#f8fafc] overflow-y-auto no-scrollbar">
+        <div className="flex flex-col h-screen w-full overflow-y-auto no-scrollbar" style={{ background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 40%, #ffffff 70%, #eff6ff 100%)' }}>
             {/* Header */}
-            <div className="bg-primary px-6 md:px-10 lg:px-14 pt-12 md:pt-16 pb-6 md:pb-8 rounded-b-[2.5rem] md:rounded-b-[3.5rem] shadow-floating sticky top-0 z-20">
+            <div className="bg-gradient-to-br from-sky-400 to-blue-600 px-6 md:px-10 lg:px-14 pt-12 md:pt-16 pb-6 md:pb-8 rounded-b-[2.5rem] md:rounded-b-[3.5rem] shadow-lg shadow-blue-200/50 sticky top-0 z-20">
                 <div className="flex justify-between items-center mb-6 md:mb-8">
                     <div className="flex items-center gap-3 md:gap-4">
                         <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner">
@@ -149,7 +146,7 @@ export default function Dashboard() {
                     >
                         <Bell className="text-white w-6 h-6 md:w-8 md:h-8" />
                         {UNREAD_COUNT > 0 && (
-                            <span className="absolute top-2.5 right-2.5 md:top-3 md:right-3 w-3 h-3 md:w-4 md:h-4 bg-red-400 rounded-full border-2 border-primary flex items-center justify-center">
+                            <span className="absolute top-2.5 right-2.5 md:top-3 md:right-3 w-3 h-3 md:w-4 md:h-4 bg-red-400 rounded-full border-2 border-sky-500 flex items-center justify-center">
                                 <span className="text-[7px] font-black text-white hidden md:block">{UNREAD_COUNT}</span>
                             </span>
                         )}
@@ -169,23 +166,23 @@ export default function Dashboard() {
 
             <div className="p-6 md:p-10 lg:p-14 pb-24 space-y-8 md:space-y-12">
 
-                {/* Digital ID Invite Banner */}
+                {/* Digital ID Invite Banner — Light Luxury */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                     onClick={() => setIsIDModalOpen(true)}
-                    className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-[2rem] p-6 shadow-lg shadow-blue-500/20 cursor-pointer relative overflow-hidden group border border-blue-400/30"
+                    className="bg-gradient-to-r from-sky-100 via-white to-indigo-100 rounded-[2rem] p-6 shadow-md shadow-sky-200/40 cursor-pointer relative overflow-hidden group border border-sky-200"
                 >
-                    <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                    <div className="absolute -right-6 -top-6 w-32 h-32 bg-sky-200/40 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
                     <div className="flex items-center gap-5 relative z-10">
-                        <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0 border border-white/20">
+                        <div className="w-14 h-14 bg-gradient-to-br from-sky-500 to-blue-600 rounded-2xl flex items-center justify-center shrink-0 shadow-md">
                             <QrCode className="text-white w-7 h-7" />
                         </div>
                         <div className="flex-1">
-                            <h3 className="text-white font-bold text-lg leading-tight mb-1 font-sans">Digital Resident ID</h3>
-                            <p className="text-blue-100 text-xs font-medium">Generate your official smart ward ID card in seconds.</p>
+                            <h3 className="text-slate-800 font-bold text-lg leading-tight mb-1 font-sans">Digital Resident ID</h3>
+                            <p className="text-slate-500 text-xs font-medium">Generate your official smart ward ID card in seconds.</p>
                         </div>
-                        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors">
-                            <ChevronRight className="text-white w-5 h-5" />
+                        <div className="w-10 h-10 bg-sky-100 border border-sky-200 rounded-full flex items-center justify-center shrink-0 group-hover:bg-sky-200 transition-colors">
+                            <ChevronRight className="text-sky-600 w-5 h-5" />
                         </div>
                     </div>
                 </motion.div>
@@ -217,10 +214,10 @@ export default function Dashboard() {
                         {bulletinItems.map((item) => {
                             const Icon = item.icon;
                             return (
-                                <div key={item.id} onClick={() => navigate('/updates')} className="shrink-0 w-72 md:w-80 bg-white rounded-[2rem] p-5 shadow-floating border border-slate-100/50 flex flex-col cursor-pointer hover:shadow-xl transition-shadow group relative overflow-hidden snap-center">
-                                    <div className={`absolute inset-0 bg-gradient-to-br from-${item.bgColor.split('-')[1]}-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+                                <div key={item.id} onClick={() => navigate('/updates')} className="shrink-0 w-72 md:w-80 bg-white/80 backdrop-blur-xl rounded-[2rem] p-5 shadow-md border border-white/60 flex flex-col cursor-pointer hover:shadow-xl transition-shadow group relative overflow-hidden snap-center">
+                                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem] bg-gradient-to-br from-sky-50 to-transparent`}></div>
                                     <div className="flex gap-4 items-start relative z-10 mb-4">
-                                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-inner bg-slate-50 ${item.color}`}>
+                                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-sm ${item.bgColor} ${item.color}`}>
                                             <Icon className="w-6 h-6" />
                                         </div>
                                         <div className="flex-1">
@@ -258,27 +255,27 @@ export default function Dashboard() {
                     </div>
                 </motion.section>
 
-                {/* Marketplace Link Card */}
+                {/* Marketplace Link Card — Light Luxury */}
                 <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.05 }}
                     className="mt-8 md:mt-12"
                 >
-                    <div onClick={() => navigate('/marketplace')} className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-[2rem] p-6 shadow-lg shadow-green-500/20 cursor-pointer relative overflow-hidden group border border-green-400/30 w-full hover:shadow-xl transition-all">
-                        <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                    <div onClick={() => navigate('/marketplace')} className="bg-gradient-to-r from-emerald-50 via-white to-teal-50 rounded-[2rem] p-6 shadow-md shadow-emerald-200/40 cursor-pointer relative overflow-hidden group border border-emerald-200 w-full hover:shadow-lg transition-all">
+                        <div className="absolute -right-6 -top-6 w-32 h-32 bg-emerald-100/60 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
                         <div className="flex items-center gap-5 relative z-10 w-full">
-                            <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0 border border-white/20">
+                            <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shrink-0 shadow-md">
                                 <ShoppingBag className="text-white w-7 h-7" />
                             </div>
                             <div className="flex-1">
-                                <h3 className="text-white font-bold text-xl leading-tight mb-1 font-malayalam flex items-center gap-2 tracking-tight">
-                                    നാട്ടുചന്ത <span className="bg-white/20 px-2 py-0.5 rounded-full text-[10px] font-sans uppercase tracking-widest">New</span>
+                                <h3 className="text-slate-800 font-bold text-xl leading-tight mb-1 font-malayalam flex items-center gap-2 tracking-tight">
+                                    നാട്ടുചന്ത <span className="bg-emerald-100 border border-emerald-200 text-emerald-700 px-2 py-0.5 rounded-full text-[10px] font-sans uppercase tracking-widest">New</span>
                                 </h3>
-                                <p className="text-green-100 text-xs font-bold font-sans uppercase tracking-widest">Local Marketplace</p>
+                                <p className="text-slate-500 text-xs font-bold font-sans uppercase tracking-widest">Local Marketplace</p>
                             </div>
-                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center shrink-0 group-hover:bg-white/30 transition-colors">
-                                <ChevronRight className="text-white w-5 h-5" />
+                            <div className="w-10 h-10 bg-emerald-100 border border-emerald-200 rounded-full flex items-center justify-center shrink-0 group-hover:bg-emerald-200 transition-colors">
+                                <ChevronRight className="text-emerald-600 w-5 h-5" />
                             </div>
                         </div>
                     </div>
@@ -300,7 +297,7 @@ export default function Dashboard() {
                                     onClick={() => handlePillarClick(pillar)}
                                     whileHover={{ scale: 0.98, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className={`bg-white/70 backdrop-blur-xl rounded-[2rem] p-5 md:p-6 lg:p-8 shadow-floating border border-white/60 flex flex-col items-start gap-4 text-left transition-all hover:shadow-xl relative overflow-hidden group ${index === 0 ? 'col-span-2 md:col-span-1 xl:col-span-2 md:flex-col xl:flex-row xl:items-center' : ''}`}
+                                    className={`bg-white/70 backdrop-blur-xl rounded-[2rem] p-5 md:p-6 lg:p-8 shadow-md border border-white/60 flex flex-col items-start gap-4 text-left transition-all hover:shadow-xl relative overflow-hidden group ${index === 0 ? 'col-span-2 md:col-span-1 xl:col-span-2 md:flex-col xl:flex-row xl:items-center' : ''}`}
                                 >
                                     <div className={`absolute -right-6 -bottom-6 w-24 h-24 md:w-32 md:h-32 ${pillar.color} opacity-[0.05] rounded-full group-hover:scale-150 transition-transform duration-500`} />
 

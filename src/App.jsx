@@ -7,6 +7,7 @@ const Splash = lazy(() => import('./pages/Splash'))
 const Welcome = lazy(() => import('./pages/Welcome'))
 const AuthChoice = lazy(() => import('./pages/AuthChoice'))
 const Signup = lazy(() => import('./pages/Signup'))
+const Showcase = lazy(() => import('./pages/Showcase'))
 const Dashboard = lazy(() => import('./pages/Dashboard'))
 const OurWard = lazy(() => import('./pages/OurWard'))
 const SmartWard = lazy(() => import('./pages/SmartWard'))
@@ -21,8 +22,10 @@ import AuthModal from './components/AuthModal'
 import BottomNav from './components/BottomNav'
 import Sidebar from './components/Sidebar'
 import AIAssistant from './components/AIAssistant'
+import IOSInstallOverlay from './components/IOSInstallOverlay'
 import ErrorBoundary from './components/ErrorBoundary'
 import { Sparkles } from 'lucide-react'
+import { useAuth } from './context/AuthContext'
 
 // Simple loading spinner for Suspense fallback
 const PageLoader = () => (
@@ -33,7 +36,15 @@ const PageLoader = () => (
 
 function App() {
   const location = useLocation();
+  const { isAuthenticated, userMode } = useAuth();
   const [isAiOpen, setIsAiOpen] = useState(false);
+
+  // Define routes where navigation should be hidden
+  const authRoutes = ['/', '/welcome', '/auth', '/signup', '/showcase'];
+
+  // Logical check for showing navigation: Not an auth route AND (logged in OR guest mode)
+  const isAuthorized = isAuthenticated || userMode === 'guest';
+  const showNavigation = !authRoutes.includes(location.pathname) && isAuthorized;
 
   return (
     <div className="w-full min-h-screen bg-black/5 flex justify-center">
@@ -42,9 +53,10 @@ function App() {
       */}
       <div className="w-full min-h-screen bg-[#f8fafc] relative overflow-hidden flex mx-auto">
         <AuthModal />
+        <IOSInstallOverlay />
 
         {/* Desktop / Tablet Sidebar (hidden on mobile) */}
-        <Sidebar />
+        {showNavigation && <Sidebar />}
 
         {/* Main Content Area */}
         <div className="flex-1 min-w-0 flex flex-col relative h-screen overflow-y-auto no-scrollbar">
@@ -56,6 +68,7 @@ function App() {
                   <Route path="/welcome" element={<PageTransition><Welcome /></PageTransition>} />
                   <Route path="/auth" element={<PageTransition><AuthChoice /></PageTransition>} />
                   <Route path="/signup" element={<PageTransition><Signup /></PageTransition>} />
+                  <Route path="/showcase" element={<PageTransition><Showcase /></PageTransition>} />
                   <Route path="/dashboard" element={<PageTransition><Dashboard /></PageTransition>} />
                   <Route path="/our-ward" element={<PageTransition><OurWard /></PageTransition>} />
                   <Route path="/smart-ward" element={<PageTransition><SmartWard /></PageTransition>} />
@@ -72,12 +85,14 @@ function App() {
           </ErrorBoundary>
 
           {/* Mobile Bottom Navigation (hidden on desktop) */}
-          <div className="lg:hidden">
-            <BottomNav />
-          </div>
+          {showNavigation && (
+            <div className="lg:hidden">
+              <BottomNav />
+            </div>
+          )}
 
-          {/* Global AI Assistant FAB (Hidden on Onboarding) */}
-          {!['/', '/welcome', '/auth', '/signup'].includes(location.pathname) && (
+          {/* Global AI Assistant FAB */}
+          {showNavigation && (
             <>
               <motion.button
                 onClick={() => setIsAiOpen(true)}
