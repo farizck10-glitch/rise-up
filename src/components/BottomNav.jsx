@@ -17,7 +17,7 @@ export default function BottomNav() {
         { id: 'dashboard', path: '/dashboard', icon: Home, label: 'Home', center: false },
         { id: 'our-ward', path: '/our-ward', icon: Newspaper, label: 'Updates', center: false },
         { id: 'smart-ward', path: '/smart-ward', icon: Layers, label: 'Services', center: true },
-        { id: 'support', path: '/support', icon: AlertCircle, label: 'Emergency', center: false },
+        { id: 'support', path: '/kaithang', icon: AlertCircle, label: 'Emergency', center: false },
         { id: 'profile', path: '/profile', icon: User, label: 'Profile', center: false },
     ];
 

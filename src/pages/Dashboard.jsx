@@ -25,7 +25,7 @@ import PensionWidget from '../components/PensionWidget';
 const pillars = [
     { id: 1, title: 'നമ്മുടെ വാർഡ്', subtitle: 'Our Ward', descMalayalam: 'വികസന പദ്ധതികൾ', descEnglish: 'Development Projects', icon: Home, color: 'bg-blue-500', path: '/our-ward' },
     { id: 2, title: 'സ്മാർട്ട് വാർഡ്', subtitle: 'Smart Ward', descMalayalam: 'ഇ-സേവനങ്ങളും പരാതികളും', descEnglish: 'E-Services & Complaints', icon: Settings, color: 'bg-purple-500', path: '/smart-ward' },
-    { id: 3, title: 'കൈത്താങ്ങ്', subtitle: 'Support', descMalayalam: 'ആരോഗ്യവും അത്യാഹിത സേവനങ്ങളും', descEnglish: 'Health & Emergency', icon: Heart, color: 'bg-rose-500', path: '/support' },
+    { id: 3, title: 'കൈത്താങ്ങ്', subtitle: 'Support', descMalayalam: 'ആരോഗ്യവും വിദ്യാഭ്യാസവും', descEnglish: 'Health & Education', icon: Heart, color: 'bg-rose-500', path: '/kaithang' },
     { id: 4, title: 'തൊഴിലിടം', subtitle: 'Workplace', descMalayalam: 'പ്രാദേശിക തൊഴിൽ അവസരങ്ങൾ', descEnglish: 'Local Job Opportunities', icon: Briefcase, color: 'bg-amber-500', path: '/workplace' },
     { id: 5, title: 'നാട്ടുനന്മ', subtitle: 'Green & Culture', descMalayalam: 'കൃഷി, മാലിന്യ സംസ്കരണം', descEnglish: 'Agriculture & Waste Management', icon: Leaf, color: 'bg-emerald-500', path: '/green' },
 ];

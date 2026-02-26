@@ -8,7 +8,9 @@ import {
     AlertCircle, FileCheck, CheckCircle2,
     Image as ImageIcon, Search, Plus, Clock, CheckCircle, Star,
     X, Users, Briefcase, Home, MessageSquare,
-    ExternalLink, FileBadge, ClipboardEdit, ChevronDown, ChevronRight, Copy, Check
+    ExternalLink, FileBadge, ClipboardEdit, ChevronDown, ChevronRight, Copy, Check,
+    CalendarDays, Trophy, Droplets, Zap, Trash2,
+    MapPin, PhoneCall, Building2, Search as SearchIcon, Shield, Sprout, ShoppingCart
 } from 'lucide-react';
 
 export default function SmartWard() {
@@ -34,6 +36,8 @@ export default function SmartWard() {
     const [smartFill, setSmartFill] = useState({ name: '', houseNo: '', surveyNo: '', aadhaarLast4: '' });
     const [smartFillCopied, setSmartFillCopied] = useState(false);
     const [expandedGuide, setExpandedGuide] = useState(null);
+    const [expandedDocs, setExpandedDocs] = useState(null);
+    const toggleDocs = (key) => setExpandedDocs(prev => prev === key ? null : key);
 
     const openWebView = (url, title) => {
         setWebViewUrl(url);
@@ -198,102 +202,202 @@ export default function SmartWard() {
                 {/* 2x2 Grid Layout for Core Features */}
                 <div className="grid grid-cols-2 gap-4">
 
-                    {/* Feature 1: K-SMART Direct */}
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="col-span-2 bg-white rounded-[2rem] p-6 shadow-floating border border-slate-100">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
-                                <Landmark className="w-5 h-5" />
+                    {/* ══ PANCHAYAT SERVICES — K-SMART ══ */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+                        className="col-span-2 rounded-[28px] bg-gradient-to-br from-[#1E3A8A] via-[#1a2f6e] to-[#0d1440] border border-blue-400/20 shadow-2xl overflow-hidden p-[1px]"
+                    >
+                        <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/8 blur-[60px] rounded-full pointer-events-none" />
+
+                            {/* Header */}
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/30 to-indigo-600/20 border border-blue-400/40 flex items-center justify-center shrink-0">
+                                    <Building2 className="w-5 h-5 text-blue-200" />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-[15px] font-black text-white tracking-tight font-malayalam">പഞ്ചായത്ത് സേവനങ്ങൾ</h3>
+                                    <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">Panchayat Services · K-SMART</p>
+                                </div>
+                                <span className="text-[8px] font-black uppercase text-indigo-300 bg-indigo-500/20 border border-indigo-400/25 px-2.5 py-1 rounded-full shrink-0">K-SMART</span>
                             </div>
-                            <div>
-                                <h3 className="font-bold text-slate-800 text-base font-malayalam">K-SMART സേവനങ്ങൾ</h3>
-                                <p className="text-[10px] font-bold font-sans text-slate-400 uppercase tracking-widest">K-SMART Direct</p>
+
+                            {/* 2×2 Service Grid */}
+                            <div className="grid grid-cols-2 gap-2.5">
+                                {[
+                                    {
+                                        icon: Users,
+                                        mal: 'ജനന/മരണ/വിവാഹ സർട്ടിഫിക്കറ്റുകൾ',
+                                        eng: 'Birth / Death / Marriage',
+                                        url: 'https://ksmart.lsgkerala.gov.in/civil-registration',
+                                        accent: 'bg-sky-500/15 border-sky-400/25 text-sky-300',
+                                        iconBg: 'bg-sky-500/20 border-sky-400/30',
+                                    },
+                                    {
+                                        icon: Landmark,
+                                        mal: 'കെട്ടിട നികുതി',
+                                        eng: 'Property Tax',
+                                        url: 'https://ksmart.lsgkerala.gov.in/property-tax',
+                                        accent: 'bg-amber-500/15 border-amber-400/25 text-amber-300',
+                                        iconBg: 'bg-amber-500/20 border-amber-400/30',
+                                    },
+                                    {
+                                        icon: Home,
+                                        mal: 'കെട്ടിട നിർമ്മാണ അനുമതി',
+                                        eng: 'Building Permit',
+                                        url: 'https://ksmart.lsgkerala.gov.in/building-permit',
+                                        accent: 'bg-violet-500/15 border-violet-400/25 text-violet-300',
+                                        iconBg: 'bg-violet-500/20 border-violet-400/30',
+                                    },
+                                    {
+                                        icon: MessageSquare,
+                                        mal: 'പരാതികൾ നൽകാം',
+                                        eng: 'Public Grievance',
+                                        url: 'https://ksmart.lsgkerala.gov.in/grievance',
+                                        accent: 'bg-rose-500/15 border-rose-400/25 text-rose-300',
+                                        iconBg: 'bg-rose-500/20 border-rose-400/30',
+                                    },
+                                ].map((svc) => {
+                                    const Icon = svc.icon;
+                                    return (
+                                        <a
+                                            key={svc.eng}
+                                            href={svc.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`flex flex-col gap-2.5 rounded-2xl p-3.5 border ${svc.accent} hover:brightness-110 active:scale-[0.97] transition-all group`}
+                                        >
+                                            <div className={`w-9 h-9 rounded-xl border ${svc.iconBg} flex items-center justify-center shrink-0`}>
+                                                <Icon className="w-4 h-4" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[12px] font-black text-white leading-tight font-malayalam">{svc.mal}</p>
+                                                <p className="text-[9px] text-white/40 font-sans uppercase tracking-wider mt-1 font-bold">{svc.eng}</p>
+                                            </div>
+                                            <div className="flex items-center gap-1 text-[9px] font-black uppercase tracking-wider opacity-40 group-hover:opacity-70 transition-opacity">
+                                                <ExternalLink className="w-2.5 h-2.5" /> K-SMART
+                                            </div>
+                                        </a>
+                                    );
+                                })}
                             </div>
+
+                            <p className="text-center text-[10px] text-blue-300/20 font-semibold mt-4">
+                                Opens official K-SMART Kerala portal
+                            </p>
                         </div>
+                    </motion.div>
 
-                        <div className="grid grid-cols-2 gap-3">
-                            <button onClick={() => openWebView("https://ksmart.lsgkerala.gov.in/property-tax", "കെട്ടിട നികുതി")} className="bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-purple-50 transition-all p-3 rounded-2xl flex flex-col items-center gap-2 group focus:outline-none focus:ring-4 focus:ring-purple-100 text-center">
-                                <Landmark className="w-6 h-6 text-slate-400 group-hover:text-purple-600 transition-colors" />
-                                <div>
-                                    <h4 className="font-bold text-slate-700 text-[11px] sm:text-xs font-malayalam leading-tight">കെട്ടിട നികുതി</h4>
-                                    <p className="text-[8px] text-slate-500 font-sans uppercase mt-0.5 font-bold">Property Tax</p>
-                                </div>
-                            </button>
+                    {/* ══ VILLAGE SERVICES — e-DISTRICT ══ */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+                        className="col-span-2 rounded-[28px] bg-gradient-to-br from-[#0a2e18] via-[#0c381e] to-[#061008] border border-emerald-400/20 shadow-2xl overflow-hidden p-[1px]"
+                    >
+                        <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/8 blur-[60px] rounded-full pointer-events-none" />
 
-                            <button onClick={() => openWebView("https://ksmart.lsgkerala.gov.in/civil-registration", "ജനന/മരണ/വിവാഹ രജിസ്ട്രേഷൻ")} className="bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-purple-50 transition-all p-3 rounded-2xl flex flex-col items-center gap-2 group focus:outline-none focus:ring-4 focus:ring-purple-100 text-center">
-                                <Users className="w-6 h-6 text-slate-400 group-hover:text-purple-600 transition-colors" />
-                                <div>
-                                    <h4 className="font-bold text-slate-700 text-[11px] sm:text-xs font-malayalam leading-tight">ജനന/മരണ/വിവാഹ രജിസ്ട്രേഷൻ</h4>
-                                    <p className="text-[8px] text-slate-500 font-sans uppercase mt-0.5 font-bold">Civil Registration</p>
+                            {/* Header */}
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/30 to-green-600/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                                    <Landmark className="w-5 h-5 text-emerald-200" />
                                 </div>
-                            </button>
+                                <div className="flex-1">
+                                    <h3 className="text-[15px] font-black text-white tracking-tight font-malayalam">വില്ലേജ് സേവനങ്ങൾ</h3>
+                                    <p className="text-[10px] text-emerald-300/50 font-bold uppercase tracking-widest mt-0.5">Village &amp; e-District Services</p>
+                                </div>
+                                <span className="text-[8px] font-black uppercase text-emerald-300 bg-emerald-500/20 border border-emerald-400/25 px-2.5 py-1 rounded-full shrink-0">e-District</span>
+                            </div>
 
-                            <button onClick={() => openWebView("https://ksmart.lsgkerala.gov.in/trade-license", "വ്യാപാര ലൈസൻസുകൾ")} className="bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-purple-50 transition-all p-3 rounded-2xl flex flex-col items-center gap-2 group focus:outline-none focus:ring-4 focus:ring-purple-100 text-center">
-                                <Briefcase className="w-6 h-6 text-slate-400 group-hover:text-purple-600 transition-colors" />
-                                <div>
-                                    <h4 className="font-bold text-slate-700 text-[11px] sm:text-xs font-malayalam leading-tight">വ്യാപാര ലൈസൻസുകൾ</h4>
-                                    <p className="text-[8px] text-slate-500 font-sans uppercase mt-0.5 font-bold">Trade Licenses</p>
-                                </div>
-                            </button>
+                            {/* 2×2 + 1 wide Service Grid */}
+                            <div className="grid grid-cols-2 gap-2.5">
+                                {[
+                                    {
+                                        icon: Sprout,
+                                        mal: 'ഭൂനികുതി അടയ്ക്കാം',
+                                        eng: 'Land Tax Payment',
+                                        url: 'https://edistrict.kerala.gov.in/',
+                                        accent: 'bg-green-500/15 border-green-400/25 text-green-300',
+                                        iconBg: 'bg-green-500/20 border-green-400/30',
+                                        wide: false,
+                                    },
+                                    {
+                                        icon: FileText,
+                                        mal: 'വരുമാന സർട്ടിഫിക്കറ്റ്',
+                                        eng: 'Income Certificate',
+                                        url: 'https://edistrict.kerala.gov.in/',
+                                        accent: 'bg-teal-500/15 border-teal-400/25 text-teal-300',
+                                        iconBg: 'bg-teal-500/20 border-teal-400/30',
+                                        wide: false,
+                                    },
+                                    {
+                                        icon: FileBadge,
+                                        mal: 'ജാതി സർട്ടിഫിക്കറ്റ്',
+                                        eng: 'Caste Certificate',
+                                        url: 'https://edistrict.kerala.gov.in/',
+                                        accent: 'bg-amber-500/15 border-amber-400/25 text-amber-300',
+                                        iconBg: 'bg-amber-500/20 border-amber-400/30',
+                                        wide: false,
+                                    },
+                                    {
+                                        icon: MapPin,
+                                        mal: 'ലൊക്കേഷൻ സർട്ടിഫിക്കറ്റ്',
+                                        eng: 'Location Certificate',
+                                        url: 'https://edistrict.kerala.gov.in/',
+                                        accent: 'bg-cyan-500/15 border-cyan-400/25 text-cyan-300',
+                                        iconBg: 'bg-cyan-500/20 border-cyan-400/30',
+                                        wide: false,
+                                    },
+                                    {
+                                        icon: ShoppingCart,
+                                        mal: 'റേഷൻ കാർഡ് അപേക്ഷകൾ',
+                                        eng: 'Ration Card Services',
+                                        url: 'https://epds.kerala.gov.in/',
+                                        accent: 'bg-lime-500/15 border-lime-400/25 text-lime-300',
+                                        iconBg: 'bg-lime-500/20 border-lime-400/30',
+                                        wide: true,
+                                    },
+                                ].map((svc) => {
+                                    const Icon = svc.icon;
+                                    return (
+                                        <a
+                                            key={svc.eng}
+                                            href={svc.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`flex gap-3 rounded-2xl p-3.5 border ${svc.accent} ${svc.wide ? 'col-span-2 items-center' : 'flex-col'} hover:brightness-110 active:scale-[0.97] transition-all group`}
+                                        >
+                                            <div className={`w-9 h-9 rounded-xl border ${svc.iconBg} flex items-center justify-center shrink-0`}>
+                                                <Icon className="w-4 h-4" />
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-[12px] font-black text-white leading-tight font-malayalam">{svc.mal}</p>
+                                                <p className="text-[9px] text-white/40 font-sans uppercase tracking-wider mt-1 font-bold">{svc.eng}</p>
+                                            </div>
+                                            {svc.wide && (
+                                                <div className="flex items-center gap-1 text-[9px] font-black uppercase tracking-wider opacity-40 group-hover:opacity-70 transition-opacity shrink-0">
+                                                    <ExternalLink className="w-2.5 h-2.5" /> Open →
+                                                </div>
+                                            )}
+                                            {!svc.wide && (
+                                                <div className="flex items-center gap-1 text-[9px] font-black uppercase tracking-wider opacity-40 group-hover:opacity-70 transition-opacity mt-auto">
+                                                    <ExternalLink className="w-2.5 h-2.5" /> e-District
+                                                </div>
+                                            )}
+                                        </a>
+                                    );
+                                })}
+                            </div>
 
-                            <button onClick={() => openWebView("https://ksmart.lsgkerala.gov.in/building-permit", "കെട്ടിട നിർമ്മാണ അനുമതി")} className="bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-purple-50 transition-all p-3 rounded-2xl flex flex-col items-center gap-2 group focus:outline-none focus:ring-4 focus:ring-purple-100 text-center">
-                                <Home className="w-6 h-6 text-slate-400 group-hover:text-purple-600 transition-colors" />
-                                <div>
-                                    <h4 className="font-bold text-slate-700 text-[11px] sm:text-xs font-malayalam leading-tight">കെട്ടിട നിർമ്മാണ അനുമതി</h4>
-                                    <p className="text-[8px] text-slate-500 font-sans uppercase mt-0.5 font-bold">Building Permits</p>
-                                </div>
-                            </button>
-
-                            <button onClick={() => openWebView("https://ksmart.lsgkerala.gov.in/grievance", "പരാതി പരിഹാരം")} className="col-span-2 bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-purple-50 transition-all p-3 rounded-2xl flex flex-row items-center justify-center gap-3 group focus:outline-none focus:ring-4 focus:ring-purple-100 text-left">
-                                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
-                                    <MessageSquare className="w-4 h-4 text-purple-600 transition-colors group-hover:scale-110" />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-slate-700 text-[11px] sm:text-xs font-malayalam leading-tight">പരാതി പരിഹാരം</h4>
-                                    <p className="text-[8px] text-slate-500 font-sans uppercase mt-0.5 font-bold">Public Grievance</p>
-                                </div>
-                            </button>
+                            <p className="text-center text-[10px] text-emerald-300/20 font-semibold mt-4">
+                                Opens official Kerala e-District / EPDS portal
+                            </p>
                         </div>
                     </motion.div>
 
-                    {/* Feature 2: Village Guide */}
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="col-span-2 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-[2rem] p-6 shadow-floating border border-indigo-100">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-indigo-600 shadow-sm">
-                                <FileCheck className="w-5 h-5" />
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-indigo-900 text-base font-malayalam">വില്ലേജ് ഗൈഡ്</h3>
-                                <p className="text-[10px] font-bold font-sans text-indigo-400 uppercase tracking-widest">Village Guide</p>
-                            </div>
-                        </div>
 
-                        <div className="space-y-3">
-                            {/* Document Requirement 1 */}
-                            <div className="bg-white rounded-2xl p-4 shadow-sm border border-indigo-100/50">
-                                <div className="flex justify-between items-center mb-2">
-                                    <h4 className="font-bold text-slate-800 text-sm font-malayalam">വരുമാന സർട്ടിഫിക്കറ്റ്</h4>
-                                    <span className="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded uppercase font-bold">Income</span>
-                                </div>
-                                <ul className="text-xs text-slate-500 font-sans space-y-1.5 pl-1">
-                                    <li className="flex gap-2 items-start"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" /> Ration Card Copy</li>
-                                    <li className="flex gap-2 items-start"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" /> Aadhaar Card</li>
-                                    <li className="flex gap-2 items-start"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" /> Land Tax Receipt (Current Year)</li>
-                                </ul>
-                            </div>
 
-                            {/* Document Requirement 2 */}
-                            <div className="bg-white rounded-2xl p-4 shadow-sm border border-indigo-100/50">
-                                <div className="flex justify-between items-center mb-2">
-                                    <h4 className="font-bold text-slate-800 text-sm font-malayalam">ജാതി സർട്ടിഫിക്കറ്റ്</h4>
-                                    <span className="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded uppercase font-bold">Caste</span>
-                                </div>
-                                <ul className="text-xs text-slate-500 font-sans space-y-1.5 pl-1">
-                                    <li className="flex gap-2 items-start"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" /> SSLC Book / School Certificate</li>
-                                    <li className="flex gap-2 items-start"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" /> Parents' Caste Document</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </motion.div>
+
+
 
                     {/* Feature 3: Panchayat Schemes */}
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="col-span-2 bg-white rounded-[2rem] p-6 shadow-floating border border-slate-100">
@@ -490,72 +594,99 @@ export default function SmartWard() {
                 </div>
 
                 {/* ═══════════════════════════════════════════
-                    VILLAGE OFFICE SERVICES  (e-District)
+                    DIGITAL VILLAGE PORTAL
                 ═══════════════════════════════════════════ */}
 
                 {/* Section Divider */}
                 <div className="flex items-center gap-3 my-2">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-white px-3 py-1 rounded-full border border-slate-100 shadow-sm whitespace-nowrap">
-                        Village Office Services
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-1.5 rounded-full border border-blue-200 shadow-sm whitespace-nowrap flex items-center gap-1.5">
+                        <Shield className="w-2.5 h-2.5" /> Digital Village Portal
                     </span>
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
                 </div>
 
-                {/* ── e-District Direct Links ── */}
+                {/* ── Digital Village Portal: Main Card ── */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
                     className="rounded-[28px] bg-gradient-to-br from-[#1E3A8A] via-[#1a2f6e] to-[#0d1440] border border-blue-400/20 shadow-2xl overflow-hidden p-[1px]"
                 >
                     <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 blur-[60px] rounded-full pointer-events-none" />
+                        <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-indigo-500/10 blur-[40px] rounded-full pointer-events-none" />
 
-                        {/* Header */}
-                        <div className="flex items-center gap-3 mb-5">
-                            <div className="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shrink-0">
-                                <FileBadge className="w-5 h-5 text-blue-300" />
+                        {/* Portal Header with official seal feel */}
+                        <div className="flex items-center gap-3 mb-1">
+                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/30 to-indigo-500/20 border border-blue-400/40 flex items-center justify-center shrink-0 shadow-lg">
+                                <Building2 className="w-6 h-6 text-blue-200" />
                             </div>
                             <div>
-                                <h3 className="text-[15px] font-black text-white tracking-tight">Village Office Services</h3>
-                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">e-District Kerala · Direct Links</p>
+                                <h3 className="text-[16px] font-black text-white tracking-tight">Digital Village Portal</h3>
+                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">e-District Kerala · Official Services</p>
+                            </div>
+                            <div className="ml-auto">
+                                <span className="text-[8px] font-black uppercase tracking-widest text-green-300 bg-green-500/20 border border-green-400/25 px-2 py-1 rounded-full flex items-center gap-1">
+                                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse inline-block" />
+                                    Live
+                                </span>
                             </div>
                         </div>
+                        <p className="text-[11px] text-blue-200/35 mb-5 ml-[60px] leading-snug">
+                            Government services, one tap away. Opens Kerala e-District portal.
+                        </p>
 
-                        {/* e-District service buttons */}
-                        <div className="grid grid-cols-2 gap-2.5">
+                        {/* ── 3 Hero Service Buttons ── */}
+                        <div className="grid grid-cols-3 gap-2.5 mb-3">
                             {[
                                 {
-                                    label: 'Pay Land Tax',
-                                    mal: '\u0d2d\u0d42\u0d28\u0d3f\u0d15\u0d41\u0d24\u0d3f',
-                                    url: 'https://edistrict.kerala.gov.in/K-SMART/land-tax',
-                                    icon: Home,
-                                    color: 'bg-green-500/15 border-green-400/25 text-green-300',
-                                    iconBg: 'bg-green-500/20 border-green-400/30',
-                                },
-                                {
-                                    label: 'Income Certificate',
-                                    mal: '\u0d35\u0d30\u0d41\u0d2e\u0d3e\u0d28 \u0d38\u0d7c\u0d1f\u0d4d\u0d1f\u0d3f\u0d2b\u0d3f\u0d15\u0d4d\u0d15\u0d31\u0d4d\u0d31\u0d4d',
-                                    url: 'https://edistrict.kerala.gov.in/K-SMART/certificate/income',
-                                    icon: FileText,
-                                    color: 'bg-indigo-500/15 border-indigo-400/25 text-indigo-300',
-                                    iconBg: 'bg-indigo-500/20 border-indigo-400/30',
-                                },
-                                {
-                                    label: 'Caste Certificate',
-                                    mal: '\u0d1c\u0d3e\u0d24\u0d3f \u0d38\u0d7c\u0d1f\u0d4d\u0d1f\u0d3f\u0d2b\u0d3f\u0d15\u0d4d\u0d15\u0d31\u0d4d\u0d31\u0d4d',
-                                    url: 'https://edistrict.kerala.gov.in/K-SMART/certificate/caste',
-                                    icon: FileBadge,
-                                    color: 'bg-amber-500/15 border-amber-400/25 text-amber-300',
-                                    iconBg: 'bg-amber-500/20 border-amber-400/30',
-                                },
-                                {
-                                    label: 'Possession Certificate',
-                                    mal: '\u0d15\u0d48\u0d35\u0d36 \u0d38\u0d7c\u0d1f\u0d4d\u0d1f\u0d3f\u0d2b\u0d3f\u0d15\u0d4d\u0d15\u0d31\u0d4d\u0d31\u0d4d',
+                                    label: 'Land Tax',
+                                    mal: 'ഭൂനികുതി',
                                     url: 'https://edistrict.kerala.gov.in/',
-                                    icon: Landmark,
-                                    color: 'bg-rose-500/15 border-rose-400/25 text-rose-300',
-                                    iconBg: 'bg-rose-500/20 border-rose-400/30',
+                                    emoji: '🏠',
+                                    color: 'from-green-600/30 to-emerald-700/20 border-green-400/30 text-green-200',
+                                    tag: 'Pay Now',
                                 },
+                                {
+                                    label: 'Income Cert.',
+                                    mal: 'വരുമാന സർട്ടിഫിക്കറ്റ്',
+                                    url: 'https://edistrict.kerala.gov.in/',
+                                    emoji: '📄',
+                                    color: 'from-indigo-600/30 to-blue-700/20 border-indigo-400/30 text-indigo-200',
+                                    tag: 'Apply',
+                                },
+                                {
+                                    label: 'App. Status',
+                                    mal: 'അപേക്ഷ സ്ഥിതി',
+                                    url: 'https://edistrict.kerala.gov.in/',
+                                    emoji: '🔍',
+                                    color: 'from-violet-600/30 to-purple-700/20 border-violet-400/30 text-violet-200',
+                                    tag: 'Track',
+                                },
+                            ].map((svc) => (
+                                <a
+                                    key={svc.label}
+                                    href={svc.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`flex flex-col items-center text-center gap-2 rounded-2xl p-3.5 border bg-gradient-to-b ${svc.color} hover:brightness-110 transition-all active:scale-95 group`}
+                                >
+                                    <span className="text-2xl">{svc.emoji}</span>
+                                    <div>
+                                        <p className="text-[12px] font-black text-white leading-tight">{svc.label}</p>
+                                        <p className="text-[8px] font-medium opacity-50 font-malayalam mt-0.5 leading-tight">{svc.mal}</p>
+                                    </div>
+                                    <span className="text-[8px] font-black uppercase tracking-wider bg-white/10 px-2 py-0.5 rounded-full border border-white/15 group-hover:bg-white/20 transition-colors">
+                                        {svc.tag} →
+                                    </span>
+                                </a>
+                            ))}
+                        </div>
+
+                        {/* ── Secondary Links Row ── */}
+                        <div className="grid grid-cols-2 gap-2">
+                            {[
+                                { label: 'Caste Certificate', mal: 'ജാതി സർട്ടിഫിക്കറ്റ്', url: 'https://edistrict.kerala.gov.in/', icon: FileBadge },
+                                { label: 'Possession Cert.', mal: 'കൈവശ സർട്ടിഫിക്കറ്റ്', url: 'https://edistrict.kerala.gov.in/', icon: Landmark },
                             ].map((svc) => {
                                 const Icon = svc.icon;
                                 return (
@@ -564,18 +695,16 @@ export default function SmartWard() {
                                         href={svc.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`flex flex-col gap-2.5 rounded-2xl p-3.5 border ${svc.color} hover:brightness-110 transition-all group active:scale-95`}
+                                        className="flex items-center gap-3 rounded-2xl p-3.5 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all group active:scale-95"
                                     >
-                                        <div className={`w-9 h-9 rounded-xl ${svc.iconBg} border flex items-center justify-center shrink-0`}>
-                                            <Icon className="w-4 h-4" />
+                                        <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center shrink-0">
+                                            <Icon className="w-4 h-4 text-blue-300" />
                                         </div>
-                                        <div>
-                                            <p className="text-[12px] font-bold text-white leading-tight">{svc.label}</p>
-                                            <p className="text-[10px] text-blue-200/40 font-medium mt-0.5 font-malayalam">{svc.mal}</p>
+                                        <div className="min-w-0">
+                                            <p className="text-[11px] font-bold text-white leading-tight truncate">{svc.label}</p>
+                                            <p className="text-[9px] text-blue-200/35 font-malayalam">{svc.mal}</p>
                                         </div>
-                                        <div className="flex items-center gap-1 text-[9px] font-black uppercase tracking-wider opacity-50 group-hover:opacity-80 transition-opacity">
-                                            <ExternalLink className="w-2.5 h-2.5" /> e-District
-                                        </div>
+                                        <ExternalLink className="w-3 h-3 text-blue-300/30 group-hover:text-blue-300/60 transition-colors shrink-0 ml-auto" />
                                     </a>
                                 );
                             })}
@@ -768,7 +897,333 @@ export default function SmartWard() {
                     </div>
                 </motion.div>
 
-            </div>
-        </div>
+                {/* ── Village Office Info Card ── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.58 }}
+                    className="rounded-[28px] bg-gradient-to-br from-[#162b5e] to-[#0a1236] border border-blue-400/20 shadow-xl overflow-hidden p-[1px]"
+                >
+                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6 relative overflow-hidden">
+                        <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-600/10 blur-[40px] rounded-full pointer-events-none" />
+
+                        {/* Header */}
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-400/30 flex items-center justify-center shrink-0">
+                                <Building2 className="w-5 h-5 text-rose-300" />
+                            </div>
+                            <div>
+                                <h3 className="text-[15px] font-black text-white tracking-tight">Village Office</h3>
+                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">Panayi · Contact &amp; Hours</p>
+                            </div>
+                        </div>
+
+                        {/* Info rows */}
+                        <div className="space-y-3">
+                            {/* Location */}
+                            <div className="flex items-start gap-3 rounded-2xl bg-white/[0.05] border border-white/10 p-3.5">
+                                <div className="w-9 h-9 rounded-xl bg-blue-500/20 border border-blue-400/25 flex items-center justify-center shrink-0">
+                                    <MapPin className="w-4 h-4 text-blue-300" />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-blue-300/50 mb-0.5">Location</p>
+                                    <p className="text-[13px] font-bold text-white leading-snug">Panayi Village Office</p>
+                                    <p className="text-[11px] text-blue-200/45 leading-snug font-malayalam">പനായി വില്ലേജ് ഓഫീസ്, Kozhikode Dist.</p>
+                                </div>
+                            </div>
+
+                            {/* Contact — tappable */}
+                            <a
+                                href="tel:+914952480100"
+                                className="flex items-start gap-3 rounded-2xl bg-white/[0.05] border border-white/10 p-3.5 hover:bg-white/[0.09] transition-colors active:scale-[0.98] group"
+                            >
+                                <div className="w-9 h-9 rounded-xl bg-green-500/20 border border-green-400/25 flex items-center justify-center shrink-0">
+                                    <PhoneCall className="w-4 h-4 text-green-300" />
+                                </div>
+                                <div className="flex-1">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-blue-300/50 mb-0.5">Contact Number</p>
+                                    <p className="text-[13px] font-bold text-white group-hover:text-green-300 transition-colors">0495 248 0100</p>
+                                    <p className="text-[10px] text-blue-200/35 font-sans">Tap to call Village Office directly</p>
+                                </div>
+                                <ExternalLink className="w-3.5 h-3.5 text-blue-300/30 group-hover:text-green-300/60 transition-colors shrink-0 mt-1" />
+                            </a>
+
+                            {/* Working Hours */}
+                            <div className="rounded-2xl bg-white/[0.05] border border-white/10 p-3.5">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/25 flex items-center justify-center shrink-0">
+                                        <Clock className="w-4 h-4 text-amber-300" />
+                                    </div>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-blue-300/50">Working Hours</p>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {[
+                                        { days: 'Mon – Fri', time: '10:00 AM – 5:00 PM', color: 'text-green-300' },
+                                        { days: 'Saturday', time: '10:00 AM – 1:00 PM', color: 'text-yellow-300' },
+                                        { days: 'Sunday', time: 'Closed', color: 'text-red-400' },
+                                        { days: 'Public Holidays', time: 'Closed', color: 'text-red-400' },
+                                    ].map((row, i) => (
+                                        <div key={i} className="rounded-xl bg-white/[0.04] border border-white/[0.07] p-2.5">
+                                            <p className="text-[9px] font-black text-white/50 uppercase tracking-wide">{row.days}</p>
+                                            <p className={`text-[11px] font-bold ${row.color} mt-0.5 leading-tight`}>{row.time}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <p className="text-center text-[10px] text-blue-300/25 font-semibold mt-4">
+                            Panayi Village Office · Ward 18, Kozhikode
+                        </p>
+                    </div>
+                </motion.div>
+
+                {/* ─────────────────────────────────────────────
+                    SECTION DIVIDER — Ward Engagement
+                ───────────────────────────────────────────── */}
+                <div className="flex items-center gap-3 my-2">
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-white px-3 py-1 rounded-full border border-slate-100 shadow-sm whitespace-nowrap">
+                        Ward 18 · Community
+                    </span>
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+                </div>
+
+                {/* ══ 1. WARD CALENDAR ══ */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
+                    className="rounded-[28px] bg-gradient-to-br from-[#1E3A8A] via-[#1a2f6e] to-[#0d1440] border border-blue-400/20 shadow-2xl overflow-hidden p-[1px]"
+                >
+                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 blur-[50px] rounded-full pointer-events-none" />
+
+                        {/* Header */}
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shrink-0">
+                                <CalendarDays className="w-5 h-5 text-blue-300" />
+                            </div>
+                            <div>
+                                <h3 className="text-[15px] font-black text-white tracking-tight font-malayalam">വാർഡ് കലണ്ടർ</h3>
+                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">Ward Calendar · Upcoming Events</p>
+                            </div>
+                        </div>
+
+                        {/* Event List */}
+                        <div className="space-y-3">
+                            {[
+                                {
+                                    date: 'Feb 28',
+                                    day: 'Fri',
+                                    title: 'Anganwadi Distribution',
+                                    mal: 'അൻഗൻവാടി വിതരണം',
+                                    time: '9:00 AM',
+                                    venue: 'Anganwadi Centre, Ward 18',
+                                    color: 'bg-emerald-500/20 border-emerald-400/30 text-emerald-300',
+                                    dot: 'bg-emerald-400',
+                                },
+                                {
+                                    date: 'Mar 04',
+                                    day: 'Tue',
+                                    title: 'Kudumbashree Meeting',
+                                    mal: 'കുടുംബശ്രീ യോഗം',
+                                    time: '2:00 PM',
+                                    venue: 'Ward Office, Panayi',
+                                    color: 'bg-violet-500/20 border-violet-400/30 text-violet-300',
+                                    dot: 'bg-violet-400',
+                                },
+                                {
+                                    date: 'Mar 10',
+                                    day: 'Mon',
+                                    title: 'Gramasabha Meeting',
+                                    mal: 'ഗ്രാമസഭ',
+                                    time: '10:00 AM',
+                                    venue: 'Panchayat Hall',
+                                    color: 'bg-amber-500/20 border-amber-400/30 text-amber-300',
+                                    dot: 'bg-amber-400',
+                                },
+                            ].map((event, i) => (
+                                <div key={i} className={`flex items-stretch gap-3 rounded-2xl border p-3.5 ${event.color}`}>
+                                    {/* Date block */}
+                                    <div className="flex flex-col items-center justify-center w-12 shrink-0 text-center">
+                                        <span className="text-[10px] font-bold uppercase opacity-60">{event.day}</span>
+                                        <span className="text-[18px] font-black leading-none">{event.date.split(' ')[1]}</span>
+                                        <span className="text-[9px] font-bold uppercase opacity-60">{event.date.split(' ')[0]}</span>
+                                    </div>
+                                    {/* Divider dot line */}
+                                    <div className="flex flex-col items-center gap-1 py-1">
+                                        <div className={`w-2 h-2 rounded-full shrink-0 ${event.dot}`}></div>
+                                        <div className="flex-1 w-px bg-white/10"></div>
+                                    </div>
+                                    {/* Content */}
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-[13px] font-black text-white leading-tight">{event.title}</p>
+                                        <p className="text-[10px] font-medium opacity-60 font-malayalam mt-0.5">{event.mal}</p>
+                                        <div className="flex items-center gap-3 mt-1.5">
+                                            <span className="text-[10px] font-bold opacity-60 flex items-center gap-1">
+                                                <Clock className="w-2.5 h-2.5" />{event.time}
+                                            </span>
+                                            <span className="text-[10px] font-medium opacity-50 truncate">{event.venue}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* ══ 2. TALENTS OF WARD 18 ══ */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65 }}
+                    className="rounded-[28px] bg-gradient-to-br from-[#2a1a5e] via-[#1E3A8A] to-[#0d1440] border border-purple-400/20 shadow-2xl overflow-hidden p-[1px]"
+                >
+                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6 relative overflow-hidden">
+                        <div className="absolute bottom-0 left-0 w-40 h-40 bg-purple-500/10 blur-[50px] rounded-full pointer-events-none" />
+
+                        {/* Header */}
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-10 h-10 rounded-xl bg-yellow-500/20 border border-yellow-400/30 flex items-center justify-center shrink-0">
+                                <Trophy className="w-5 h-5 text-yellow-300" />
+                            </div>
+                            <div>
+                                <h3 className="text-[15px] font-black text-white tracking-tight font-malayalam">വാർഡ് 18 ൻ്റെ പ്രതിഭകൾ</h3>
+                                <p className="text-[10px] text-purple-300/50 font-bold uppercase tracking-widest mt-0.5">Talents of Ward 18 · Spotlight</p>
+                            </div>
+                        </div>
+
+                        {/* Talent Cards */}
+                        <div className="grid grid-cols-3 gap-3">
+                            {[
+                                {
+                                    name: 'Arjun P.',
+                                    achievement: 'State Chess Champion',
+                                    mal: 'ചെസ്സ് ജേതാവ്',
+                                    emoji: '♟️',
+                                    badge: 'Sports',
+                                    badgeColor: 'bg-blue-500/20 border-blue-400/25 text-blue-300',
+                                },
+                                {
+                                    name: 'Meera S.',
+                                    achievement: 'District Art Winner',
+                                    mal: 'ചിത്രകലാ ജേതാവ്',
+                                    emoji: '🎨',
+                                    badge: 'Arts',
+                                    badgeColor: 'bg-pink-500/20 border-pink-400/25 text-pink-300',
+                                },
+                                {
+                                    name: 'Rohit K.',
+                                    achievement: '100% Score — 10th',
+                                    mal: 'സ്കൂൾ ടോപ്പർ',
+                                    emoji: '📚',
+                                    badge: 'Academics',
+                                    badgeColor: 'bg-emerald-500/20 border-emerald-400/25 text-emerald-300',
+                                },
+                            ].map((talent, i) => (
+                                <div key={i} className="flex flex-col items-center text-center rounded-2xl bg-white/[0.06] border border-white/10 p-3 gap-2">
+                                    {/* Avatar / Emoji */}
+                                    <div className="w-12 h-12 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-2xl">
+                                        {talent.emoji}
+                                    </div>
+                                    <div className="space-y-0.5">
+                                        <p className="text-[12px] font-black text-white leading-tight">{talent.name}</p>
+                                        <p className="text-[9px] text-white/40 font-medium font-malayalam leading-snug">{talent.mal}</p>
+                                    </div>
+                                    <span className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${talent.badgeColor}`}>{talent.badge}</span>
+                                    <p className="text-[9px] text-white/55 font-medium leading-tight">{talent.achievement}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <p className="text-center text-[10px] text-purple-300/30 font-semibold mt-4">
+                            Celebrating local heroes of Ward 18, Panayi
+                        </p>
+                    </div>
+                </motion.div>
+
+                {/* ══ 3. UTILITY STATUS ══ */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}
+                    className="rounded-[28px] bg-gradient-to-br from-[#1E3A8A] to-[#0a1640] border border-blue-400/20 shadow-2xl overflow-hidden p-[1px]"
+                >
+                    <div className="bg-white/[0.04] backdrop-blur-[20px] rounded-[27px] border border-white/[0.07] p-5 md:p-6 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-36 h-36 bg-cyan-500/10 blur-[50px] rounded-full pointer-events-none" />
+
+                        {/* Header */}
+                        <div className="flex items-center gap-3 mb-5">
+                            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center shrink-0">
+                                <Zap className="w-5 h-5 text-cyan-300" />
+                            </div>
+                            <div>
+                                <h3 className="text-[15px] font-black text-white tracking-tight font-malayalam">യൂട്ടിലിറ്റി സ്ഥിതി</h3>
+                                <p className="text-[10px] text-blue-300/50 font-bold uppercase tracking-widest mt-0.5">Utility Status · Ward 18</p>
+                            </div>
+                        </div>
+
+                        {/* Status Row */}
+                        <div className="grid grid-cols-3 gap-3">
+                            {[
+                                {
+                                    icon: Droplets,
+                                    label: 'Water',
+                                    mal: 'ജലം',
+                                    status: 'Normal',
+                                    statusMal: 'സാധാരണ',
+                                    isNormal: true,
+                                    iconColor: 'text-sky-300',
+                                    iconBg: 'bg-sky-500/20 border-sky-400/30',
+                                },
+                                {
+                                    icon: Zap,
+                                    label: 'Electricity',
+                                    mal: 'വൈദ്യുതി',
+                                    status: 'Delayed',
+                                    statusMal: 'കാലതാമസം',
+                                    isNormal: false,
+                                    iconColor: 'text-yellow-300',
+                                    iconBg: 'bg-yellow-500/20 border-yellow-400/30',
+                                },
+                                {
+                                    icon: Trash2,
+                                    label: 'Waste',
+                                    mal: 'മാലിന്യം',
+                                    status: 'Normal',
+                                    statusMal: 'സാധാരണ',
+                                    isNormal: true,
+                                    iconColor: 'text-green-300',
+                                    iconBg: 'bg-green-500/20 border-green-400/30',
+                                },
+                            ].map((util, i) => {
+                                const Icon = util.icon;
+                                return (
+                                    <div key={i} className="flex flex-col items-center text-center rounded-2xl bg-white/[0.05] border border-white/10 p-4 gap-2.5">
+                                        {/* Icon */}
+                                        <div className={`w-11 h-11 rounded-xl ${util.iconBg} border flex items-center justify-center`}>
+                                            <Icon className={`w-5 h-5 ${util.iconColor}`} />
+                                        </div>
+                                        {/* Label */}
+                                        <div>
+                                            <p className="text-[12px] font-black text-white">{util.label}</p>
+                                            <p className="text-[9px] text-white/35 font-malayalam">{util.mal}</p>
+                                        </div>
+                                        {/* Status Pill */}
+                                        <span className={`text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full border flex items-center gap-1 ${util.isNormal
+                                            ? 'bg-green-500/20 border-green-400/30 text-green-300'
+                                            : 'bg-red-500/20 border-red-400/30 text-red-300'
+                                            }`}>
+                                            <span className={`w-1.5 h-1.5 rounded-full inline-block ${util.isNormal ? 'bg-green-400 animate-pulse' : 'bg-red-400 animate-pulse'
+                                                }`}></span>
+                                            {util.status}
+                                        </span>
+                                        <p className="text-[8px] text-white/30 font-malayalam">{util.statusMal}</p>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        <p className="text-center text-[10px] text-blue-300/25 font-semibold mt-4">
+                            Last updated: Today, 6:00 PM · Ward 18 Operations
+                        </p>
+                    </div>
+                </motion.div>
+
+            </div >
+        </div >
     );
 }

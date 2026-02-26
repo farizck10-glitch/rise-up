@@ -10,7 +10,7 @@ const Signup = lazy(() => import('./pages/Signup'))
 const Dashboard = lazy(() => import('./pages/Dashboard'))
 const OurWard = lazy(() => import('./pages/OurWard'))
 const SmartWard = lazy(() => import('./pages/SmartWard'))
-const Support = lazy(() => import('./pages/Support'))
+const Kaithang = lazy(() => import('./pages/Kaithang'))
 const Workplace = lazy(() => import('./pages/Workplace'))
 const GreenCulture = lazy(() => import('./pages/GreenCulture'))
 const Profile = lazy(() => import('./pages/Profile'))
@@ -59,7 +59,7 @@ function App() {
                   <Route path="/dashboard" element={<PageTransition><Dashboard /></PageTransition>} />
                   <Route path="/our-ward" element={<PageTransition><OurWard /></PageTransition>} />
                   <Route path="/smart-ward" element={<PageTransition><SmartWard /></PageTransition>} />
-                  <Route path="/support" element={<PageTransition><Support /></PageTransition>} />
+                  <Route path="/kaithang" element={<PageTransition><Kaithang /></PageTransition>} />
                   <Route path="/workplace" element={<PageTransition><Workplace /></PageTransition>} />
                   <Route path="/green" element={<PageTransition><GreenCulture /></PageTransition>} />
                   <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />

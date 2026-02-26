@@ -14,10 +14,10 @@ export default function Sidebar() {
 
     const navItems = [
         { id: 'dashboard', path: '/dashboard', icon: Home, label: 'ഹോം | Home' },
-        { id: 'smart-ward', path: '/smart-ward', icon: Layers, label: 'സേവനങ്ങൾ | Services' },
-        { id: 'support', path: '/support', icon: AlertCircle, label: 'അത്യാഹിതം | Emergency', highlight: true },
         { id: 'our-ward', path: '/our-ward', icon: Newspaper, label: 'വാർത്തകൾ | Updates' },
-        { id: 'profile', path: '/profile', icon: User, label: 'പ്രൊഫൈൽ | Profile' }
+        { id: 'smart-ward', path: '/smart-ward', icon: Layers, label: 'സേവനങ്ങൾ | Services' },
+        { id: 'support', path: '/kaithang', icon: AlertCircle, label: 'അത്യാഹിതം | Emergency', highlight: true },
+        { id: 'profile', path: '/profile', icon: User, label: 'പ്രൊഫൈൽ | Profile' },
     ];
 
     const handleNavigation = (item) => {
