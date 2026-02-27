@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "rise-up-7b684"
+  },
+  "targets": {
+    "rise-up-7b684": {
+      "hosting": {
+        "main": [
+          "rise-up-7b684"
+        ],
+        "admin": [
+          "rise-up-7b684-admin"
+        ]
+      }
+    }
+  }
+}
