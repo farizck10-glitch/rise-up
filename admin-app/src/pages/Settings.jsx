@@ -15,7 +15,7 @@ const Settings = () => {
     const [saving, setSaving] = useState(false);
 
     // Use a singleton document id 'global' for app settings
-    const settingsDocRef = doc(db, 'appSettings', 'global');
+    const settingsDocRef = doc(db, 'app_settings', 'global');
 
     useEffect(() => {
         const fetchSettings = async () => {
@@ -75,8 +75,8 @@ const Settings = () => {
                             <SettingsIcon className="w-6 h-6" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold text-slateDark">Global App Settings</h2>
-                            <p className="text-sm text-slate-500">Control remote data mapped directly to the User App.</p>
+                            <h2 className="text-xl font-bold text-slateDark">Global App Settings / ഗ്ലോബൽ ആപ്പ് സെറ്റിങ്‌സ്</h2>
+                            <p className="text-sm text-slate-500">Control remote data mapped directly to the User App. / യൂസർ ആപ്പിന്റെ പ്രധാന സെറ്റിങ്‌സ് ഇവിടെ മാറ്റാം.</p>
                         </div>
                     </div>
 
@@ -90,7 +90,7 @@ const Settings = () => {
                         ) : (
                             <>
                                 <Save className="w-5 h-5" />
-                                <span>Save Changes</span>
+                                <span>Save Changes / സേവ് ചെയ്യുക</span>
                             </>
                         )}
                     </button>
@@ -101,11 +101,11 @@ const Settings = () => {
                     <section>
                         <h3 className="text-lg font-bold mb-4 flex items-center space-x-2">
                             <Smartphone className="w-5 h-5 text-slate-400" />
-                            <span>News Ticker Configuration</span>
+                            <span>News Ticker / ന്യൂസ് ടിക്കർ</span>
                         </h3>
                         <div className="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-100">
                             <div className="flex items-center justify-between mb-2">
-                                <label className="font-medium">Enable Ticker on Main App</label>
+                                <label className="font-medium">Enable Ticker on Main App / ടിക്കർ ഓൺ ചെയ്യുക</label>
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <input type="checkbox" name="tickerActive" checked={settings.tickerActive} onChange={handleChange} className="sr-only peer" />
                                     <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
@@ -113,14 +113,14 @@ const Settings = () => {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slate-600 mb-2">Scrolling Text Message</label>
+                                <label className="block text-sm font-medium text-slate-600 mb-2">Scrolling Text Message / സ്ക്രോളിംഗ് വാർത്തകൾ</label>
                                 <textarea
                                     name="tickerText"
                                     value={settings.tickerText}
                                     onChange={handleChange}
                                     rows="2"
                                     className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all outline-none resize-none"
-                                    placeholder="e.g. Breaking News: Next Panchayat meeting schedule..."
+                                    placeholder="വാർത്തകൾ ഇവിടെ ടൈപ്പ് ചെയ്യുക..."
                                 />
                             </div>
                         </div>
@@ -129,11 +129,11 @@ const Settings = () => {
                     <section>
                         <h3 className="text-lg font-bold mb-4 flex items-center space-x-2">
                             <Image className="w-5 h-5 text-slate-400" />
-                            <span>Hero Banner</span>
+                            <span>Hero Banner / ബാനർ ചിത്രം</span>
                         </h3>
                         <div className="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-100">
                             <div>
-                                <label className="block text-sm font-medium text-slate-600 mb-2">Primary Banner Image URL</label>
+                                <label className="block text-sm font-medium text-slate-600 mb-2">Primary Banner Image URL / ബാനർ ചിത്രത്തിന്റെ ലിങ്ക്</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <LinkIcon className="h-5 w-5 text-slate-400" />
@@ -159,12 +159,12 @@ const Settings = () => {
                     <section>
                         <h3 className="text-lg font-bold mb-4 flex items-center space-x-2 text-red-600">
                             <AlertTriangle className="w-5 h-5 text-red-500" />
-                            <span>Danger Zone</span>
+                            <span>Danger Zone / അപകട മേഖല</span>
                         </h3>
                         <div className="bg-red-50 p-5 rounded-xl border border-red-100 flex items-center justify-between">
                             <div>
-                                <h4 className="font-bold text-red-800">Maintenance Mode</h4>
-                                <p className="text-sm text-red-600/80 mt-1 max-w-sm">When enabled, the public app will show a 'down for maintenance' screen to all users.</p>
+                                <h4 className="font-bold text-red-800">Maintenance Mode / അറ്റകുറ്റപ്പണി മോഡ്</h4>
+                                <p className="text-sm text-red-600/80 mt-1 max-w-sm">When enabled, the public app will show a 'down for maintenance' screen. / മെയിൻ ആപ്പ് താത്കാലികമായി ഓഫ് ചെയ്യുക.</p>
                             </div>
 
                             <label className="relative inline-flex items-center cursor-pointer">

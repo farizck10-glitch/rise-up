@@ -55,7 +55,7 @@ const Schemes = () => {
                     </div>
                     <input
                         type="text"
-                        placeholder="Search schemes..."
+                        placeholder="Search schemes... / സ്കീമുകൾ തിരയുക"
                         className="w-full px-3 py-2.5 outline-none text-slateDark text-sm placeholder:text-slate-400"
                     />
                 </div>
@@ -65,7 +65,7 @@ const Schemes = () => {
                     className="bg-gradient-to-r from-blue-700 to-blue-400 hover:from-blue-800 hover:to-blue-500 text-white px-5 py-2.5 rounded-xl font-medium shadow-md shadow-blue-500/20 transition-all active:scale-95 flex items-center space-x-2 shrink-0"
                 >
                     <Plus className="w-5 h-5" />
-                    <span>Add Scheme</span>
+                    <span>Add Scheme / സ്കീം ചേർക്കുക</span>
                 </button>
             </div>
 
@@ -76,7 +76,7 @@ const Schemes = () => {
                     <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 text-blue-400">
                         <Plus className="w-8 h-8" />
                     </div>
-                    <h3 className="text-lg font-bold text-slateDark">No Schemes Found</h3>
+                    <h3 className="text-lg font-bold text-slateDark">No Schemes Found / സ്കീമുകൾ ഇല്ല</h3>
                     <p className="text-slate-500 mt-1 max-w-sm text-center text-sm">Create your first government scheme to display it on the public portal.</p>
                     <button
                         onClick={openAddModal}

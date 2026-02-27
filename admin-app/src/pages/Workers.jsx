@@ -53,7 +53,7 @@ const Workers = () => {
                     </div>
                     <input
                         type="text"
-                        placeholder="Search workers by name or category..."
+                        placeholder="Search workers... / തൊഴിലാളികളെ തിരയുക"
                         className="w-full px-3 py-2.5 outline-none text-slateDark text-sm placeholder:text-slate-400"
                     />
                 </div>
@@ -63,7 +63,7 @@ const Workers = () => {
                     className="bg-gradient-to-r from-blue-700 to-blue-400 hover:from-blue-800 hover:to-blue-500 text-white px-5 py-2.5 rounded-xl font-medium shadow-md shadow-blue-500/20 transition-all active:scale-95 flex items-center space-x-2 shrink-0"
                 >
                     <Plus className="w-5 h-5" />
-                    <span>Add Worker</span>
+                    <span>Add Worker / തൊഴിലാളിയെ ചേർക്കുക</span>
                 </button>
             </div>
 
@@ -72,11 +72,11 @@ const Workers = () => {
                     <table className="w-full text-left text-sm whitespace-nowrap">
                         <thead className="bg-slate-50 border-b border-slate-100 text-slate-500 font-medium">
                             <tr>
-                                <th className="px-6 py-4">Name</th>
-                                <th className="px-6 py-4">Category</th>
-                                <th className="px-6 py-4">Phone</th>
-                                <th className="px-6 py-4">Ward</th>
-                                <th className="px-6 py-4 text-right">Actions</th>
+                                <th className="px-6 py-4">Name / പേര്</th>
+                                <th className="px-6 py-4">Category / തൊഴിൽ</th>
+                                <th className="px-6 py-4">Phone / ഫോൺ</th>
+                                <th className="px-6 py-4">Ward / വാർഡ്</th>
+                                <th className="px-6 py-4 text-right">Actions / മാറ്റങ്ങൾ</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">

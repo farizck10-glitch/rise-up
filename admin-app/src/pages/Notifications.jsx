@@ -51,8 +51,8 @@ const Notifications = () => {
                             <Bell className="w-6 h-6" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold text-slateDark">Push Notifications</h2>
-                            <p className="text-sm text-slate-500">Broadcast messages to all installed Main App users.</p>
+                            <h2 className="text-xl font-bold text-slateDark">Push Notifications / നോട്ടിഫിക്കേഷനുകൾ</h2>
+                            <p className="text-sm text-slate-500">Broadcast messages to all installed Main App users. / എല്ലാവർക്കും അറിയിപ്പുകൾ അയക്കുക.</p>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ const Notifications = () => {
                     <div className="md:col-span-3 space-y-5">
                         <form onSubmit={handleSend} className="space-y-5">
                             <div>
-                                <label className="block text-sm font-medium text-slateDark mb-1">Notification Title</label>
+                                <label className="block text-sm font-medium text-slateDark mb-1">Notification Title / തലക്കെട്ട്</label>
                                 <input
                                     type="text"
                                     name="title"
@@ -76,7 +76,7 @@ const Notifications = () => {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slateDark mb-1">Message Body</label>
+                                <label className="block text-sm font-medium text-slateDark mb-1">Message Body / മെസ്സേജ്</label>
                                 <textarea
                                     name="body"
                                     value={formData.body}
@@ -99,7 +99,7 @@ const Notifications = () => {
                                 ) : (
                                     <>
                                         <Send className="w-5 h-5" />
-                                        <span>Send Broadcast</span>
+                                        <span>Send Broadcast / അയക്കുക</span>
                                     </>
                                 )}
                             </button>
@@ -109,7 +109,7 @@ const Notifications = () => {
                     <div className="md:col-span-2">
                         <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 flex flex-col items-center justify-center h-full text-center space-y-4">
                             <Smartphone className="w-12 h-12 text-slate-300 mb-2" />
-                            <h4 className="font-bold text-slateDark">Preview</h4>
+                            <h4 className="font-bold text-slateDark">Preview / പ്രിവ്യൂ</h4>
                             <p className="text-sm text-slate-500 mb-4">This is how it will appear on User devices.</p>
 
                             <div className="w-full bg-white rounded-xl shadow-sm border border-slate-100 p-4 text-left relative overflow-hidden">

@@ -69,7 +69,7 @@ const Users = () => {
                     </div>
                     <input
                         type="text"
-                        placeholder="Search users by name, email, or phone..."
+                        placeholder="Search users... / ഉപയോക്താക്കളെ തിരയുക"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="w-full px-3 py-2.5 outline-none text-slateDark text-sm placeholder:text-slate-400"
@@ -77,7 +77,7 @@ const Users = () => {
                 </div>
 
                 <div className="bg-blue-50 text-blue-700 font-medium px-4 py-2.5 rounded-xl border border-blue-100 flex items-center shrink-0">
-                    <span className="mr-2">Total App Users:</span>
+                    <span className="mr-2">Total App Users / ആകെ ഉപയോക്താക്കൾ:</span>
                     <span className="font-bold text-lg">{users.length}</span>
                 </div>
             </div>
@@ -87,11 +87,11 @@ const Users = () => {
                     <table className="w-full text-left text-sm whitespace-nowrap">
                         <thead className="bg-slate-50 border-b border-slate-100 text-slate-500 font-medium">
                             <tr>
-                                <th className="px-6 py-4">User Profile</th>
-                                <th className="px-6 py-4">Contact Detail</th>
-                                <th className="px-6 py-4">Status</th>
-                                <th className="px-6 py-4">Joined On</th>
-                                <th className="px-6 py-4 text-right">Actions</th>
+                                <th className="px-6 py-4">User Profile / അക്കൗണ്ട്</th>
+                                <th className="px-6 py-4">Contact / ഫോൺ/ഇമെയിൽ</th>
+                                <th className="px-6 py-4">Status / നില</th>
+                                <th className="px-6 py-4">Joined On / തീയതി</th>
+                                <th className="px-6 py-4 text-right">Actions / മാറ്റങ്ങൾ</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">

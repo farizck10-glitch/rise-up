@@ -9,6 +9,9 @@ import Schemes from './pages/Schemes';
 import EmergencyContacts from './pages/EmergencyContacts';
 import Notifications from './pages/Notifications';
 import Settings from './pages/Settings';
+import Pension from './pages/Pension';
+import StreetLights from './pages/StreetLights';
+import AppConfig from './pages/AppConfig';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -23,8 +26,11 @@ function App() {
           <Route path="users" element={<Users />} />
           <Route path="workers" element={<Workers />} />
           <Route path="schemes" element={<Schemes />} />
+          <Route path="pension" element={<Pension />} />
+          <Route path="lights" element={<StreetLights />} />
           <Route path="emergency" element={<EmergencyContacts />} />
           <Route path="notifications" element={<Notifications />} />
+          <Route path="cms" element={<AppConfig />} />
           <Route path="settings" element={<Settings />} />
         </Route>
 

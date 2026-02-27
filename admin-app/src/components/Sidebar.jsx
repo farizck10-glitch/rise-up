@@ -12,7 +12,10 @@ import {
     LogOut,
     Verified,
     Menu,
-    X
+    X,
+    IndianRupee,
+    Lightbulb,
+    MonitorSmartphone
 } from 'lucide-react';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
@@ -23,13 +26,16 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     };
 
     const menuItems = [
-        { label: 'Overview', path: '/', icon: <LayoutDashboard className="w-5 h-5" /> },
-        { label: 'Users', path: '/users', icon: <Users className="w-5 h-5" /> },
-        { label: 'Workers', path: '/workers', icon: <Briefcase className="w-5 h-5" /> },
-        { label: 'Schemes', path: '/schemes', icon: <BookOpen className="w-5 h-5" /> },
-        { label: 'Emergency', path: '/emergency', icon: <AlertCircle className="w-5 h-5" /> },
-        { label: 'Notifications', path: '/notifications', icon: <Bell className="w-5 h-5" /> },
-        { label: 'Settings', path: '/settings', icon: <Settings className="w-5 h-5" /> },
+        { label: 'Overview / വിവരങ്ങൾ', path: '/', icon: <LayoutDashboard className="w-5 h-5" /> },
+        { label: 'Pension / പെൻഷൻ', path: '/pension', icon: <IndianRupee className="w-5 h-5" /> },
+        { label: 'Street Lights / സ്ട്രീറ്റ് ലൈറ്റ്', path: '/lights', icon: <Lightbulb className="w-5 h-5" /> },
+        { label: 'Users / ഉപയോക്താക്കൾ', path: '/users', icon: <Users className="w-5 h-5" /> },
+        { label: 'Workers / തൊഴിലാളികൾ', path: '/workers', icon: <Briefcase className="w-5 h-5" /> },
+        { label: 'Schemes / ഗവ. സ്കീമുകൾ', path: '/schemes', icon: <BookOpen className="w-5 h-5" /> },
+        { label: 'Emergency / എമർജൻസി', path: '/emergency', icon: <AlertCircle className="w-5 h-5" /> },
+        { label: 'Notifications / നോട്ടിഫിക്കേഷൻ', path: '/notifications', icon: <Bell className="w-5 h-5" /> },
+        { label: 'App CMS / ആപ്പ് കൺട്രോൾ', path: '/cms', icon: <MonitorSmartphone className="w-5 h-5" /> },
+        { label: 'Settings / സെറ്റിങ്‌സ്', path: '/settings', icon: <Settings className="w-5 h-5" /> },
     ];
 
     return (

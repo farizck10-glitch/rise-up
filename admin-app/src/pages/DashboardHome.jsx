@@ -64,7 +64,7 @@ const DashboardHome = () => {
             <div className="bg-gradient-to-r from-blue-700 to-blue-500 rounded-3xl p-8 text-white shadow-lg overflow-hidden relative">
                 <div className="absolute top-[-20%] right-[-5%] w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="relative z-10 max-w-2xl">
-                    <h1 className="text-3xl font-bold mb-3">System Overview</h1>
+                    <h1 className="text-3xl font-bold mb-3">System Overview / സിസ്റ്റം വിവരങ്ങൾ</h1>
                     <p className="text-blue-100 text-lg opacity-90">
                         Welcome to the Central Command. You have full remote control over the Panayi Ward 18 App. Manage users, workers, schemes, and push breaking news instantly.
                     </p>
@@ -73,28 +73,28 @@ const DashboardHome = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard
-                    title="Total Users"
+                    title="Total Users / ആകെ ഉപയോക്താക്കൾ"
                     value={stats.users}
                     icon={<Users className="w-6 h-6" />}
                     colorClass="bg-blue-50 text-blue-600"
                     delay="0ms"
                 />
                 <StatCard
-                    title="Registered Workers"
+                    title="Workers / തൊഴിലാളികൾ"
                     value={stats.workers}
                     icon={<Briefcase className="w-6 h-6" />}
                     colorClass="bg-indigo-50 text-indigo-600"
                     delay="100ms"
                 />
                 <StatCard
-                    title="Govt Schemes"
+                    title="Schemes / ഗവ. സ്കീമുകൾ"
                     value={stats.schemes}
                     icon={<BookOpen className="w-6 h-6" />}
                     colorClass="bg-violet-50 text-violet-600"
                     delay="200ms"
                 />
                 <StatCard
-                    title="Emergency Contacts"
+                    title="Emergency / എമർജൻസി"
                     value={stats.emergencies}
                     icon={<AlertCircle className="w-6 h-6" />}
                     colorClass="bg-rose-50 text-rose-600"
@@ -106,7 +106,7 @@ const DashboardHome = () => {
                 <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                     <h3 className="text-lg font-bold text-slateDark flex items-center mb-4">
                         <Activity className="w-5 h-5 mr-2 text-blue-600" />
-                        System Status
+                        System Status / ആപ്പ് സ്റ്റാറ്റസ്
                     </h3>
                     <div className="space-y-4">
                         <div className="flex justify-between items-center p-3 sm:p-4 rounded-xl bg-slate-50 border border-slate-100">

@@ -26,13 +26,16 @@ const Dashboard = () => {
     // Determine Page Title
     const getPageTitle = () => {
         const path = location.pathname;
-        if (path.includes('/workers')) return 'Workers Management';
-        if (path.includes('/schemes')) return 'Schemes Management';
-        if (path.includes('/users')) return 'User Management';
-        if (path.includes('/emergency')) return 'Emergency Contacts';
-        if (path.includes('/notifications')) return 'Push Notifications';
-        if (path.includes('/settings')) return 'Global Settings';
-        return 'System Overview';
+        if (path.includes('/workers')) return 'Workers Management / തൊഴിലാളികൾ';
+        if (path.includes('/schemes')) return 'Schemes Management / സ്കീമുകൾ';
+        if (path.includes('/users')) return 'User Management / ഉപയോക്താക്കൾ';
+        if (path.includes('/pension')) return 'Pension Tracking / പെൻഷൻ വിവരങ്ങൾ';
+        if (path.includes('/lights')) return 'Street Light Faults / സ്ട്രീറ്റ് ലൈറ്റ് പരാതികൾ';
+        if (path.includes('/emergency')) return 'Emergency Contacts / എമർജൻസി';
+        if (path.includes('/notifications')) return 'Push Notifications / അറിയിപ്പുകൾ';
+        if (path.includes('/cms')) return 'App CMS Control / ആപ്പ് കൺട്രോൾ';
+        if (path.includes('/settings')) return 'Global Settings / സെറ്റിങ്‌സ്';
+        return 'System Overview / വിവരങ്ങൾ';
     };
 
     if (loading) {
